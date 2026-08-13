@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PhoneIcon } from "./Icons";
+import { ArrowRightIcon, PhoneIcon } from "./Icons";
 import { site, bookingHref } from "@/lib/site";
 
 export function CtaBanner({
@@ -10,22 +10,17 @@ export function CtaBanner({
   text?: string;
 }) {
   return (
-    <section className="section" aria-label="Umów wizytę">
-      <div className="container">
-        <div className="cta-banner" data-reveal>
-          <span className="kicker" style={{ justifyContent: "center" }}>
-            Rezerwacja
-          </span>
-          <h2>{title}</h2>
-          <p>{text}</p>
-          <div className="hero-ctas">
-            <Link href={bookingHref()} className="btn btn--gold btn--lg">
-              Umów wizytę
-            </Link>
-            <a href={site.phoneHref} className="btn btn--ghost on-dark btn--lg">
-              <PhoneIcon size={17} /> {site.phoneDisplay}
-            </a>
-          </div>
+    <section className="cta-band" aria-label="Umów wizytę">
+      <div className="container cta-band-inner" data-reveal>
+        <h2>{title}</h2>
+        <p>{text}</p>
+        <div className="hero-ctas">
+          <Link href={bookingHref()} className="btn btn--gold btn--lg">
+            Umów wizytę <ArrowRightIcon size={14} />
+          </Link>
+          <a href={site.phoneHref} className="btn btn--ghost on-dark btn--lg">
+            <PhoneIcon size={15} /> {site.phoneDisplay}
+          </a>
         </div>
       </div>
     </section>

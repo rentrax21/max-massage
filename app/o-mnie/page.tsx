@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
-import { CheckIcon, ShieldIcon, SparkIcon, TableIcon, ClockIcon } from "@/components/Icons";
+import { CheckIcon, TableIcon } from "@/components/Icons";
 import { bookingHref, geoSentence } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -14,22 +14,22 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: ClockIcon,
+    num: "01",
     title: "Punktualność",
     text: "Przyjeżdżam o umówionej porze, a zabieg trwa dokładnie tyle, ile ma trwać. Twój czas to fundament tej usługi.",
   },
   {
-    icon: SparkIcon,
+    num: "02",
     title: "Higiena bez kompromisów",
     text: "Świeże pokrycie jednorazowe przy każdej wizycie, czyste ręczniki, dezynfekcja stołu i rąk. Standard gabinetu — u Ciebie.",
   },
   {
-    icon: ShieldIcon,
+    num: "03",
     title: "Dyskrecja i spokój",
     text: "Jestem gościem w Twoim domu i o tym pamiętam. Bez oceniania, bez małomównych niezręczności, bez presji.",
   },
   {
-    icon: TableIcon,
+    num: "04",
     title: "Pełne wyposażenie",
     text: "Profesjonalny stół, podgłówek, olejki hipoalergiczne, muzyka. Przywożę wszystko — Ty nie przygotowujesz niczego.",
   },
@@ -88,7 +88,7 @@ export default function AboutPage() {
             </p>
             <p>{geoSentence}</p>
             <p>
-              <Link href={bookingHref()} style={{ fontWeight: 600, color: "var(--graphite)" }}>
+              <Link href={bookingHref()} style={{ fontWeight: 600, color: "var(--ink)" }}>
                 Umów pierwszą wizytę
               </Link>{" "}
               — a przekonasz się, że profesjonalny masaż i własna kanapa pięć minut po zabiegu to
@@ -99,11 +99,11 @@ export default function AboutPage() {
           <aside className="sidebar">
             <div
               className="side-card"
-              style={{ minHeight: 320, alignContent: "center", textAlign: "center", justifyItems: "center" }}
+              style={{ minHeight: 300, alignContent: "center", justifyItems: "start" }}
               data-reveal
             >
               {/* ⚠️ Podmień ten blok na prawdziwe zdjęcie (public/o-mnie.jpg + <Image>) */}
-              <TableIcon size={44} />
+              <TableIcon size={38} className="gold" />
               <h3>Tu wstaw swoje zdjęcie</h3>
               <p>
                 Klient kupuje człowieka, nie markę — dobre, naturalne zdjęcie przy stole do masażu
@@ -131,31 +131,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--dark section--texture" aria-label="Zasady pracy">
+      <section className="section section--dark" aria-label="Zasady pracy">
         <div className="container">
           <div className="section-head" data-reveal>
-            <span className="kicker">Zasady pracy</span>
-            <h2 className="section-title">Cztery rzeczy, na które zawsze możesz liczyć</h2>
+            <span className="kicker">
+              <span className="idx">01</span> Zasady pracy
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Cztery rzeczy, na które zawsze możesz liczyć</h2>
+            </div>
           </div>
           <div className="benefits-grid">
             {values.map((v, i) => (
               <article
                 className="benefit"
                 key={v.title}
-                style={
-                  {
-                    background: "var(--card-dark)",
-                    borderColor: "var(--line-dark)",
-                    "--reveal-delay": `${i * 0.08}s`,
-                  } as React.CSSProperties
-                }
                 data-reveal
+                style={{ "--reveal-delay": `${i * 0.08}s` } as React.CSSProperties}
               >
-                <div className="benefit-icon">
-                  <v.icon size={24} />
-                </div>
-                <h3 style={{ color: "var(--on-dark)" }}>{v.title}</h3>
-                <p style={{ color: "var(--on-dark-muted)" }}>{v.text}</p>
+                <span className="benefit-num">{v.num}</span>
+                <h3>{v.title}</h3>
+                <p>{v.text}</p>
               </article>
             ))}
           </div>

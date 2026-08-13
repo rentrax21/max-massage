@@ -38,39 +38,18 @@ export default function AreaPage() {
 
       <section className="section">
         <div className="container split">
-          <div style={{ display: "grid", gap: 14 }}>
+          <div className="area-list" data-reveal>
             {cities.map((c, i) => (
-              <Link
-                key={c.slug}
-                href={`/${c.slug}`}
-                className="city-services"
-                style={{ display: "block" }}
-                data-reveal
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 16,
-                    padding: "22px 26px",
-                    background: "var(--white)",
-                    border: "1px solid var(--line-light)",
-                    borderRadius: "var(--radius)",
-                  }}
-                  className="area-city-row"
-                >
-                  <span style={{ display: "grid", gap: 4 }}>
-                    <strong style={{ fontSize: "1.15rem", letterSpacing: "-0.01em" }}>
-                      Masaż {c.name}
-                    </strong>
-                    <span style={{ fontSize: "0.85rem", color: "var(--ink-muted)" }}>
-                      {c.districts.slice(0, 4).join(" · ")} i pozostałe dzielnice
-                    </span>
+              <Link key={c.slug} href={`/${c.slug}`} className="area-row">
+                <span className="no">/0{i + 1}</span>
+                <span className="body">
+                  <h3>Masaż {c.name}</h3>
+                  <span className="districts">
+                    {c.districts.slice(0, 4).join(" · ")} i pozostałe dzielnice
                   </span>
-                  <span className="cs-meta" style={{ color: "var(--gold)", display: "inline-flex", gap: 8, alignItems: "center", fontWeight: 600, fontSize: "0.86rem", whiteSpace: "nowrap" }}>
-                    0{i + 1} <ArrowRightIcon size={15} />
-                  </span>
+                </span>
+                <span className="go" aria-hidden>
+                  <ArrowRightIcon size={16} />
                 </span>
               </Link>
             ))}

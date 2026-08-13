@@ -85,7 +85,7 @@ export function CityPageContent({ slug }: { slug: string }) {
             </div>
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 20 }}>
+              <h2 className="sub-heading">
                 Dzielnice, do których dojeżdżam
               </h2>
               <div className="chips">
@@ -98,7 +98,7 @@ export function CityPageContent({ slug }: { slug: string }) {
             </div>
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 20 }}>
+              <h2 className="sub-heading">
                 Zabiegi dostępne {city.inCity}
               </h2>
               <ul className="city-services">
@@ -116,7 +116,7 @@ export function CityPageContent({ slug }: { slug: string }) {
             </div>
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 22 }}>
+              <h2 className="sub-heading">
                 Pytania klientów z miasta {city.name}
               </h2>
               <FaqList items={city.faq} />

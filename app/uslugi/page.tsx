@@ -37,34 +37,26 @@ export default function ServicesPage() {
 
       <section className="section">
         <div className="container">
-          <div className="services-grid">
+          <div className="svc-index" data-reveal>
             {services.map((s, i) => (
-              <Link
-                href={`/uslugi/${s.slug}`}
-                className="service-card"
-                key={s.slug}
-                data-reveal
-                style={{ "--reveal-delay": `${i * 0.07}s` } as React.CSSProperties}
-              >
-                <span className="service-idx">0{i + 1}</span>
+              <Link href={`/uslugi/${s.slug}`} className="svc-row" key={s.slug}>
+                <span className="no">/0{i + 1}</span>
                 <h3>{s.name}</h3>
-                <p>{s.tile}</p>
-                <span className="service-meta">
-                  <span className="price">{s.priceFrom}</span>
-                  <span className="go">
-                    Szczegóły <ArrowRightIcon size={15} />
-                  </span>
+                <p className="desc">{s.tile}</p>
+                <span className="price">{s.priceFrom}</span>
+                <span className="go" aria-hidden>
+                  <ArrowRightIcon size={16} />
                 </span>
               </Link>
             ))}
           </div>
 
-          <div className="prose" style={{ marginTop: 56, maxWidth: 820 }} data-reveal>
+          <div className="prose" style={{ marginTop: 64, maxWidth: 820 }} data-reveal>
             <p>{geoSentence}</p>
             <p>
               Nie wiesz, który zabieg wybrać? Napisz lub zadzwoń — po krótkiej rozmowie doradzę,
               co najlepiej odpowie na Twoje potrzeby. Możesz też zacząć od{" "}
-              <Link href="/uslugi/masaz-klasyczny" style={{ fontWeight: 600, color: "var(--graphite)" }}>
+              <Link href="/uslugi/masaz-klasyczny" style={{ fontWeight: 600, color: "var(--ink)" }}>
                 masażu klasycznego
               </Link>{" "}
               — to najbardziej uniwersalny punkt startu.

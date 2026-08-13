@@ -5,17 +5,7 @@ import { AreaStrip } from "@/components/AreaStrip";
 import { FaqList } from "@/components/FaqList";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
-import {
-  ArrowRightIcon,
-  CarIcon,
-  CheckIcon,
-  ClockIcon,
-  HomeIcon,
-  PhoneIcon,
-  ShieldIcon,
-  StarIcon,
-  WhatsAppIcon,
-} from "@/components/Icons";
+import { ArrowRightIcon, PhoneIcon, WhatsAppIcon } from "@/components/Icons";
 import { services } from "@/lib/services";
 import { reviews } from "@/lib/reviews";
 import { mainFaq } from "@/lib/faq";
@@ -30,22 +20,22 @@ export const metadata: Metadata = {
 
 const benefits = [
   {
-    icon: HomeIcon,
+    num: "01",
     title: "Profesjonalny masaż w domu",
     text: "Pełnowartościowy zabieg na profesjonalnym stole — w Twoim salonie, nie w gabinecie.",
   },
   {
-    icon: ClockIcon,
+    num: "02",
     title: "Oszczędność czasu",
     text: "Zero dojazdów i czekania. Zyskujesz średnio 1,5 godziny przy każdej wizycie.",
   },
   {
-    icon: CarIcon,
+    num: "03",
     title: "Bez korków i parkingu",
     text: "To ja pokonuję trasę. Ty nie ruszasz się z miejsca — nawet po najdłuższym dniu.",
   },
   {
-    icon: ShieldIcon,
+    num: "04",
     title: "Pełen komfort i prywatność",
     text: "Żadnych poczekalni i obcych ludzi. Tylko Ty, spokój i Twoja własna przestrzeń.",
   },
@@ -112,24 +102,32 @@ export default function HomePage() {
 
       {/* ── HERO ── */}
       <section className="hero">
+        <div className="hero-masthead">
+          <div className="container hero-masthead-inner">
+            <span>Mobilny salon masażu</span>
+            <span>
+              Sosnowiec <span className="gold-dot">·</span> Dąbrowa Górnicza{" "}
+              <span className="gold-dot">·</span> Będzin <span className="gold-dot">·</span> Czeladź{" "}
+              <span className="gold-dot">·</span> Katowice
+            </span>
+          </div>
+        </div>
+
         <div className="container hero-grid">
           <div className="hero-copy">
-            <span className="kicker" data-hero-seq="1">
-              Mobilny salon masażu · Zagłębie i Katowice
-            </span>
-            <h1 className="display" data-hero-seq="2">
-              Profesjonalny masaż <span className="gold">w&nbsp;Twoim domu</span>
+            <h1 className="display" data-hero-seq="1">
+              Profesjonalny masaż <span className="gold">w&nbsp;Twoim domu.</span>
             </h1>
-            <p className="hero-sub" data-hero-seq="3">
+            <p className="hero-sub" data-hero-seq="2">
               <strong>Ty odpoczywasz. Ja przyjeżdżam.</strong> Pomagam redukować napięcia karku,
               pleców i stres — bez konieczności wychodzenia z domu.
             </p>
-            <div className="hero-ctas" data-hero-seq="4">
+            <div className="hero-ctas" data-hero-seq="3">
               <Link href={bookingHref()} className="btn btn--gold btn--lg">
-                Umów wizytę
+                Umów wizytę <ArrowRightIcon size={14} />
               </Link>
               <a href={site.phoneHref} className="btn btn--ghost on-dark btn--lg">
-                <PhoneIcon size={17} /> Zadzwoń
+                <PhoneIcon size={15} /> Zadzwoń
               </a>
               <a
                 href={whatsappLink("Dzień dobry, chcę umówić masaż z dojazdem.")}
@@ -137,25 +135,22 @@ export default function HomePage() {
                 rel="noopener"
                 className="hero-wa"
               >
-                <WhatsAppIcon size={18} /> Napisz na WhatsApp
+                <WhatsAppIcon size={16} /> WhatsApp
               </a>
             </div>
-            <ul className="hero-trust" data-hero-seq="5">
-              <li>
-                <CheckIcon /> Własny stół i pełne wyposażenie
-              </li>
-              <li>
-                <CheckIcon /> Dojazd wliczony w cenę
-              </li>
-              <li>
-                <CheckIcon /> Terminy wieczorne i weekendowe
-              </li>
-            </ul>
           </div>
 
           <div className="hero-visual" data-hero-seq="6">
             <JourneyMap />
           </div>
+        </div>
+
+        <div className="hero-rail">
+          <ul className="container hero-rail-inner" data-hero-seq="5">
+            <li>Własny stół i pełne wyposażenie</li>
+            <li>Dojazd wliczony w cenę</li>
+            <li>Terminy wieczorne i weekendowe</li>
+          </ul>
         </div>
       </section>
 
@@ -165,14 +160,18 @@ export default function HomePage() {
       <section className="section" aria-label="Korzyści">
         <div className="container">
           <div className="section-head" data-reveal>
-            <span className="kicker">Dlaczego mobilnie</span>
-            <h2 className="section-title">
-              Produktem nie jest masaż. Jest nim Twój czas i regeneracja.
-            </h2>
-            <p className="section-lead">
-              Wizyta w gabinecie to zabieg plus dojazdy, parking i czekanie. U mnie cały ten koszt
-              znika — zostaje sam efekt.
-            </p>
+            <span className="kicker">
+              <span className="idx">01</span> Dlaczego mobilnie
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">
+                Produktem nie jest masaż. Jest nim Twój czas i regeneracja.
+              </h2>
+              <p className="section-lead">
+                Wizyta w gabinecie to zabieg plus dojazdy, parking i czekanie. U mnie cały ten koszt
+                znika — zostaje sam efekt.
+              </p>
+            </div>
           </div>
           <div className="benefits-grid">
             {benefits.map((b, i) => (
@@ -182,9 +181,7 @@ export default function HomePage() {
                 data-reveal
                 style={{ "--reveal-delay": `${i * 0.08}s` } as React.CSSProperties}
               >
-                <div className="benefit-icon">
-                  <b.icon size={24} />
-                </div>
+                <span className="benefit-num">{b.num}</span>
                 <h3>{b.title}</h3>
                 <p>{b.text}</p>
               </article>
@@ -194,15 +191,19 @@ export default function HomePage() {
       </section>
 
       {/* ── DLA KOGO ── */}
-      <section className="section section--dark section--texture" aria-label="Dla kogo">
+      <section className="section section--dark" aria-label="Dla kogo">
         <div className="container">
           <div className="section-head" data-reveal>
-            <span className="kicker">Dla kogo</span>
-            <h2 className="section-title">Znam Twój rodzaj zmęczenia</h2>
-            <p className="section-lead">
-              Pracuję głównie z osobami, które łączy jedno: brak czasu — przy biurku, na treningu i
-              w codziennym pędzie.
-            </p>
+            <span className="kicker">
+              <span className="idx">02</span> Dla kogo
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Znam Twój rodzaj zmęczenia</h2>
+              <p className="section-lead">
+                Pracuję głównie z osobami, które łączy jedno: brak czasu — przy biurku, na treningu
+                i w codziennym pędzie.
+              </p>
+            </div>
           </div>
           <div className="personas">
             {personas.map((p, i) => (
@@ -230,48 +231,50 @@ export default function HomePage() {
       <section className="section" aria-label="Oferta">
         <div className="container">
           <div className="section-head" data-reveal>
-            <span className="kicker">Oferta</span>
-            <h2 className="section-title">Pięć zabiegów. Jeden adres — Twój.</h2>
-            <p className="section-lead">
-              Każdy masaż wykonuję na profesjonalnym stole, z pełnym wyposażeniem, w standardzie
-              dobrego gabinetu.
-            </p>
+            <span className="kicker">
+              <span className="idx">03</span> Oferta
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Pięć zabiegów. Jeden adres — Twój.</h2>
+              <p className="section-lead">
+                Każdy masaż wykonuję na profesjonalnym stole, z pełnym wyposażeniem, w standardzie
+                dobrego gabinetu.
+              </p>
+            </div>
           </div>
-          <div className="services-grid">
+
+          <div className="svc-index" data-reveal>
             {services.map((s, i) => (
-              <Link
-                href={`/uslugi/${s.slug}`}
-                className="service-card"
-                key={s.slug}
-                data-reveal
-                style={{ "--reveal-delay": `${i * 0.07}s` } as React.CSSProperties}
-              >
-                <span className="service-idx">0{i + 1}</span>
+              <Link href={`/uslugi/${s.slug}`} className="svc-row" key={s.slug}>
+                <span className="no">/0{i + 1}</span>
                 <h3>{s.name}</h3>
-                <p>{s.tile}</p>
-                <span className="service-meta">
-                  <span className="price">{s.priceFrom}</span>
-                  <span className="go">
-                    Szczegóły <ArrowRightIcon size={15} />
-                  </span>
+                <p className="desc">{s.tile}</p>
+                <span className="price">{s.priceFrom}</span>
+                <span className="go" aria-hidden>
+                  <ArrowRightIcon size={16} />
                 </span>
               </Link>
             ))}
           </div>
-          <div style={{ marginTop: 36, display: "flex", justifyContent: "center" }} data-reveal>
-            <Link href="/cennik" className="btn btn--ghost">
-              Zobacz pełny cennik i pakiety <ArrowRightIcon size={15} />
+
+          <div style={{ marginTop: 44 }} data-reveal>
+            <Link href="/cennik" className="link-arrow">
+              Pełny cennik i pakiety <ArrowRightIcon size={13} />
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── JAK WYGLĄDA WIZYTA ── */}
-      <section className="section section--dark" aria-label="Jak wygląda wizyta">
+      <section className="section section--deep" aria-label="Jak wygląda wizyta">
         <div className="container">
           <div className="section-head" data-reveal>
-            <span className="kicker">Przebieg wizyty</span>
-            <h2 className="section-title">Od rezerwacji do relaksu — bez Twojego wysiłku</h2>
+            <span className="kicker">
+              <span className="idx">04</span> Przebieg wizyty
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Od rezerwacji do relaksu — bez Twojego wysiłku</h2>
+            </div>
           </div>
           <div className="steps">
             {steps.map((s, i) => (
@@ -291,53 +294,47 @@ export default function HomePage() {
       </section>
 
       {/* ── OPINIE ── */}
-      <section className="section section--warm" aria-label="Opinie klientów">
+      <section className="section" aria-label="Opinie klientów">
         <div className="container">
-          <div className="section-head section-head--center" data-reveal>
-            <span className="kicker">Opinie</span>
-            <h2 className="section-title">Klienci, którzy zostali w domu</h2>
+          <div className="section-head" data-reveal>
+            <span className="kicker">
+              <span className="idx">05</span> Opinie
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Klienci, którzy zostali w domu</h2>
+            </div>
           </div>
-          <div className="reviews-grid">
-            {reviews.map((r, i) => (
-              <figure
-                className="review"
-                key={r.name + r.place}
-                data-reveal
-                style={{ "--reveal-delay": `${(i % 3) * 0.08}s` } as React.CSSProperties}
-              >
-                <div className="review-stars" aria-label="5 gwiazdek">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <StarIcon key={s} />
-                  ))}
-                </div>
-                <blockquote>„{r.text}”</blockquote>
+          <div className="reviews-grid" data-reveal>
+            {reviews.map((r) => (
+              <figure className="review" key={r.name + r.place}>
+                <blockquote>{r.text}</blockquote>
                 <figcaption>
-                  <span className="review-avatar">{r.name[0]}</span>
-                  <span>
-                    <strong>{r.name}</strong>
-                    {r.place}
-                  </span>
+                  <strong>{r.name}</strong> — {r.place}
                 </figcaption>
               </figure>
             ))}
           </div>
-          <div style={{ marginTop: 36, display: "flex", justifyContent: "center" }} data-reveal>
+          <div style={{ marginTop: 44 }} data-reveal>
             <a href={site.googleReviewsUrl} target="_blank" rel="noopener" className="link-arrow">
-              Zobacz opinie w Google <ArrowRightIcon size={15} />
+              Zobacz opinie w Google <ArrowRightIcon size={13} />
             </a>
           </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="section" aria-label="Najczęstsze pytania">
+      <section className="section section--warm" aria-label="Najczęstsze pytania">
         <div className="container">
-          <div className="section-head section-head--center" data-reveal>
-            <span className="kicker">FAQ</span>
-            <h2 className="section-title">Najczęstsze pytania</h2>
-            <p className="section-lead">
-              Wszystko, co warto wiedzieć przed pierwszym masażem w domu.
-            </p>
+          <div className="section-head" data-reveal>
+            <span className="kicker">
+              <span className="idx">06</span> FAQ
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title">Najczęstsze pytania</h2>
+              <p className="section-lead">
+                Wszystko, co warto wiedzieć przed pierwszym masażem w domu.
+              </p>
+            </div>
           </div>
           <FaqList items={mainFaq} />
         </div>

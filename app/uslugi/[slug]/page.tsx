@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
             </div>
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 22 }}>
+              <h2 className="sub-heading">
                 Efekty, które poczujesz
               </h2>
               <ul className="check-list">
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
             </div>
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 22 }}>
+              <h2 className="sub-heading">
                 Ten zabieg jest dla Ciebie, jeśli…
               </h2>
               <ul className="check-list">
@@ -128,22 +128,13 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
             </div>
 
             {service.note && (
-              <p
-                className="form-note"
-                style={{
-                  padding: "18px 22px",
-                  background: "var(--paper-warm)",
-                  borderRadius: "var(--radius-sm)",
-                  borderLeft: "2px solid var(--gold)",
-                }}
-                data-reveal
-              >
+              <p className="note-block" data-reveal>
                 {service.note}
               </p>
             )}
 
             <div data-reveal>
-              <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: 22 }}>
+              <h2 className="sub-heading">
                 Pytania o {service.shortName.toLowerCase()}
               </h2>
               <FaqList items={service.faq} />

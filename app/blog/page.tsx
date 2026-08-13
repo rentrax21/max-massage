@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { posts, blogCategories } from "@/lib/blog";
+import { posts } from "@/lib/blog";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
+import { ArrowRightIcon } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Blog — regeneracja, home office i zdrowe plecy",
@@ -28,13 +29,6 @@ export default function BlogPage() {
             Bez lania wody: konkretne teksty o bólu karku, regeneracji po treningu i odpoczynku,
             który naprawdę działa.
           </p>
-          <div className="chips" style={{ marginTop: 6 }}>
-            {blogCategories.map((c) => (
-              <span className="chip" key={c} style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.16)", color: "var(--on-dark-muted)" }}>
-                {c}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -42,30 +36,26 @@ export default function BlogPage() {
 
       <section className="section">
         <div className="container">
-          <div className="posts-grid">
-            {posts.map((p, i) => (
-              <Link
-                href={`/blog/${p.slug}`}
-                className="post-card"
-                key={p.slug}
-                data-reveal
-                style={{ "--reveal-delay": `${i * 0.08}s` } as React.CSSProperties}
-              >
-                <div className="post-card-top">
-                  <span className="post-cat">{p.category}</span>
-                  <h3>{p.title}</h3>
-                </div>
-                <div className="post-card-body">
-                  <p>{p.excerpt}</p>
-                  <span className="post-meta">
-                    <span>{p.dateLabel}</span>
-                    <span>{p.readTime}</span>
+          <div className="posts-list" data-reveal>
+            {posts.map((p) => (
+              <Link href={`/blog/${p.slug}`} className="post-row" key={p.slug}>
+                <span className="meta">
+                  <span className="cat">{p.category}</span>
+                  <span className="date">
+                    {p.dateLabel} · {p.readTime}
                   </span>
-                </div>
+                </span>
+                <span className="body">
+                  <h3>{p.title}</h3>
+                  <span className="excerpt">{p.excerpt}</span>
+                </span>
+                <span className="go" aria-hidden>
+                  <ArrowRightIcon size={16} />
+                </span>
               </Link>
             ))}
           </div>
-          <p className="form-note" style={{ marginTop: 32, textAlign: "center" }} data-reveal>
+          <p className="form-note" style={{ marginTop: 40 }} data-reveal>
             Nowe teksty pojawiają się regularnie — dotyczą tego, o co klienci pytają na stole.
           </p>
         </div>
