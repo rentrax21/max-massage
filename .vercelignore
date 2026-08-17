@@ -1,0 +1,7 @@
+# Oryginały z sesji zdjęciowej i paczka logo nie są potrzebne w runtime —
+# na produkcję idą tylko przetworzone pliki z public/.
+wetransfer_*/
+wetransfer_*.zip
+brand/
+scripts/
+.claude/
