@@ -83,6 +83,9 @@ export function Header() {
               </div>
             </div>
 
+            <Link href="/galeria" className="nav-link">
+              Galeria
+            </Link>
             <Link href="/blog" className="nav-link">
               Blog
             </Link>
@@ -147,6 +150,9 @@ export function Header() {
           </div>
         </details>
 
+        <Link href="/galeria" className="mm-link">
+          Galeria
+        </Link>
         <Link href="/blog" className="mm-link">
           Blog
         </Link>

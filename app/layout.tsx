@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
 import { RevealObserver } from "@/components/Reveal";
+import { CtaTracking } from "@/components/CtaTracking";
 import { JsonLd } from "@/components/JsonLd";
 import { site, cityNames } from "@/lib/site";
 import { services } from "@/lib/services";
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1E293B",
+  themeColor: "#1F1A16",
 };
 
 const localBusinessJsonLd = {
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <StickyCta />
         <RevealObserver />
+        <CtaTracking />
       </body>
     </html>
   );

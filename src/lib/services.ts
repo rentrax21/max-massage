@@ -40,7 +40,7 @@ export const services: Service[] = [
     description: [
       "Masaż klasyczny to praca na mięśniach i powięzi z użyciem sprawdzonych technik: głaskania, rozcierania, ugniatania i uciskania. Dobieram siłę nacisku do Twoich potrzeb — od zdecydowanego rozpracowania napięć po łagodniejszą pracę na wrażliwych partiach.",
       "Zabieg wykonuję u Ciebie w domu, na profesjonalnym stole do masażu, który przywożę ze sobą. Potrzebuję tylko kawałka wolnej podłogi — resztą zajmuję się ja.",
-      "Max Massage wykonuje profesjonalny masaż klasyczny w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic — bez dojazdów do gabinetu, bez szukania parkingu, bez czekania w poczekalni.",
+      "Pierwszą wizytę zaczynam od pytania, co dokładnie boli i od jak dawna — bo „bolą mnie plecy” może oznaczać pięć różnych rzeczy i każda wymaga innej pracy. Zwykle okazuje się, że źródłem sztywnego karku są barki podciągnięte przez cały dzień do uszu, a nie sam kark.",
     ],
     variants: [
       { time: "50 min", price: "180 zł" },
@@ -88,7 +88,7 @@ export const services: Service[] = [
     description: [
       "Masaż relaksacyjny prowadzę wolniejszym, płynnym rytmem, pracując na całym ciele. Celem nie jest „rozbijanie” napięć, ale wyciszenie układu nerwowego — to on odpowiada za jakość snu, poziom stresu i uczucie ciągłego zmęczenia.",
       "Największa różnica względem masażu w gabinecie? Po zabiegu nie wsiadasz do samochodu i nie wracasz przez korki. Zostajesz w domu, robisz herbatę i przedłużasz stan głębokiego odprężenia o cały wieczór.",
-      "Max Massage wykonuje masaż relaksacyjny w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic — wieczorami i w weekendy, kiedy naprawdę masz czas odpocząć.",
+      "Ten zabieg umawia się najczęściej na wieczór albo na weekend i to ma sens: masaż relaksacyjny w środku dnia pracy działa o połowę słabiej, bo za dwie godziny i tak wracasz do maili. Ostatnie wizyty zaczynam około dziewiętnastej trzydzieści — po nich nie masz już nic w planach poza własnym łóżkiem.",
     ],
     variants: [
       { time: "50 min", price: "180 zł" },

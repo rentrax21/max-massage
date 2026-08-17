@@ -2,38 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
-import { CheckIcon, TableIcon } from "@/components/Icons";
-import { bookingHref, geoSentence } from "@/lib/site";
+import { Photo } from "@/components/Photo";
+import { Credentials } from "@/components/Credentials";
+import { WorkRules } from "@/components/WorkRules";
+import { CheckIcon } from "@/components/Icons";
+import { bookingHref, credentials, hasCredentials } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "O mnie — kim jestem i dlaczego przyjeżdżam do Ciebie",
+  title: "O mnie — kim jestem i na jakich zasadach pracuję",
   description:
-    "Poznaj osobę stojącą za Max Massage: certyfikowany masażysta, który przywozi profesjonalny gabinet do Twojego domu. Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice.",
+    "Kto przyjedzie do Twojego domu: kwalifikacje, sposób pracy i jasne zasady zabiegu. Masaż z dojazdem w Sosnowcu, Dąbrowie Górniczej, Będzinie, Czeladzi i Katowicach.",
   alternates: { canonical: "/o-mnie" },
 };
-
-const values = [
-  {
-    num: "01",
-    title: "Punktualność",
-    text: "Przyjeżdżam o umówionej porze, a zabieg trwa dokładnie tyle, ile ma trwać. Twój czas to fundament tej usługi.",
-  },
-  {
-    num: "02",
-    title: "Higiena bez kompromisów",
-    text: "Świeże pokrycie jednorazowe przy każdej wizycie, czyste ręczniki, dezynfekcja stołu i rąk. Standard gabinetu — u Ciebie.",
-  },
-  {
-    num: "03",
-    title: "Dyskrecja i spokój",
-    text: "Jestem gościem w Twoim domu i o tym pamiętam. Bez oceniania, bez małomównych niezręczności, bez presji.",
-  },
-  {
-    num: "04",
-    title: "Pełne wyposażenie",
-    text: "Profesjonalny stół, podgłówek, olejki hipoalergiczne, muzyka. Przywożę wszystko — Ty nie przygotowujesz niczego.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -49,8 +29,9 @@ export default function AboutPage() {
             Masaż to mój zawód. <span className="gold">Dojazd to mój standard.</span>
           </h1>
           <p className="lead">
-            Jestem certyfikowanym masażystą i twórcą Max Massage — mobilnego salonu masażu, który
-            przyjeżdża do domów klientów w Zagłębiu i Katowicach.
+            Nazywam się {credentials.firstName} i prowadzę Max Massage sam — mobilny gabinet masażu,
+            który przyjeżdża do domów klientów w Zagłębiu i Katowicach. To ja odbieram telefon
+            i to ja wykonuję zabieg.
           </p>
         </div>
       </section>
@@ -73,20 +54,29 @@ export default function AboutPage() {
               zapleczem dobrego gabinetu. Zabieg jest dokładnie ten sam. Znika tylko wszystko to, co
               było wokół niego stratą czasu.
             </p>
-            <h2>Doświadczenie i podejście</h2>
+            <h2>Kwalifikacje</h2>
             <p>
-              Ukończyłem kursy zawodowe z zakresu masażu klasycznego, sportowego, limfatycznego oraz
-              japońskiego masażu twarzy Kobido i stale poszerzam warsztat na szkoleniach. Na co
-              dzień pracuję głównie z osobami spędzającymi długie godziny przy komputerze oraz z
-              amatorami sportu — biegaczami, bywalcami siłowni, rowerzystami.
+              Pracuję z masażem klasycznym, sportowym i limfatycznym oraz z japońskim masażem
+              twarzy Kobido. Poniżej konkrety, które możesz sprawdzić — bo wpuszczasz do domu
+              osobę, której nie znasz, i „profesjonalny masażysta” to za mało.
+            </p>
+
+            <Credentials />
+
+            <h2>Jak pracuję</h2>
+            <p>
+              Każdą wizytę zaczynam od krótkiej rozmowy: co dolega, jak pracujesz, jak sypiasz,
+              jakiego nacisku oczekujesz, czy są kontuzje albo choroby, o których muszę wiedzieć.
+              Dopiero potem wybieram techniki. To pięć minut, które decyduje o tym, czy zabieg
+              faktycznie zadziała.
             </p>
             <p>
-              Każdą wizytę zaczynam od krótkiej rozmowy: co Ci dolega, jak pracujesz, jak sypiasz,
-              jakiego nacisku oczekujesz. Nie wykonuję „zabiegu z cennika” — wykonuję zabieg dla
-              Ciebie. Dlatego klienci wracają i dlatego większość rezerwacji to dziś stali klienci
-              oraz polecenia.
+              Na co dzień pracuję głównie z dwoma rodzajami napięcia: karkiem i barkami u osób
+              spędzających długie godziny przy komputerze oraz nogami i grzbietem u amatorów
+              sportu — biegaczy, rowerzystów, bywalców siłowni. Jeśli Twój przypadek jest inny,
+              napisz przed rezerwacją; czasem uczciwszą odpowiedzią jest skierowanie do
+              fizjoterapeuty niż sprzedanie masażu.
             </p>
-            <p>{geoSentence}</p>
             <p>
               <Link href={bookingHref()} style={{ fontWeight: 600, color: "var(--ink)" }}>
                 Umów pierwszą wizytę
@@ -97,66 +87,50 @@ export default function AboutPage() {
           </div>
 
           <aside className="sidebar">
-            <div
-              className="side-card"
-              style={{ minHeight: 300, alignContent: "center", justifyItems: "start" }}
-              data-reveal
-            >
-              {/* ⚠️ Podmień ten blok na prawdziwe zdjęcie (public/o-mnie.jpg + <Image>) */}
-              <TableIcon size={38} className="gold" />
-              <h3>Tu wstaw swoje zdjęcie</h3>
-              <p>
-                Klient kupuje człowieka, nie markę — dobre, naturalne zdjęcie przy stole do masażu
-                zwiększa zaufanie bardziej niż jakikolwiek tekst.
-              </p>
+            <div data-reveal>
+              <Photo
+                name="portret-koszula"
+                sizes="(max-width: 1023px) 100vw, 340px"
+                ratio="4 / 5"
+                position="50% 20%"
+                alt="Maks — masażysta prowadzący Max Massage"
+              />
             </div>
             <div className="side-card side-card--plain" data-reveal>
-              <h3>W skrócie</h3>
+              <h3>Jak to działa</h3>
+              {/* Wyłącznie fakty operacyjne — rzeczy, których klient
+                  może się spodziewać, a nie deklaracje o jakości. */}
               <ul className="check-list">
                 <li>
-                  <CheckIcon /> Certyfikowany masażysta
+                  <CheckIcon /> Praca wyłącznie z dojazdem, pięć miast
                 </li>
                 <li>
-                  <CheckIcon /> Kursy: klasyczny, sportowy, limfatyczny, Kobido
+                  <CheckIcon /> Własny stół, pościel, olejki i muzyka
                 </li>
                 <li>
-                  <CheckIcon /> Praca wyłącznie z dojazdem — 5 miast
+                  <CheckIcon /> Świeże pokrycie na każdą wizytę
                 </li>
                 <li>
-                  <CheckIcon /> Własny stół i pełne wyposażenie
+                  <CheckIcon /> Jedna osoba — ja odbieram telefon i ja masuję
+                </li>
+                <li>
+                  <CheckIcon /> Terminy wieczorne i sobotnie
                 </li>
               </ul>
+              {!hasCredentials() && (
+                /* Widoczne tylko dla właściciela w kodzie: dopóki
+                   credentials w src/lib/site.ts są puste, blok faktów
+                   wyżej się nie renderuje. Uzupełnij go przed startem. */
+                <p style={{ fontSize: "0.8rem", color: "var(--ink-faint)" }}>
+                  Chcesz zobaczyć dyplom? Poproś przy pierwszej wizycie — pokazuję bez problemu.
+                </p>
+              )}
             </div>
           </aside>
         </div>
       </section>
 
-      <section className="section section--dark" aria-label="Zasady pracy">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <span className="kicker">
-              <span className="idx">01</span> Zasady pracy
-            </span>
-            <div className="sh-body">
-              <h2 className="section-title">Cztery rzeczy, na które zawsze możesz liczyć</h2>
-            </div>
-          </div>
-          <div className="benefits-grid">
-            {values.map((v, i) => (
-              <article
-                className="benefit"
-                key={v.title}
-                data-reveal
-                style={{ "--reveal-delay": `${i * 0.08}s` } as React.CSSProperties}
-              >
-                <span className="benefit-num">{v.num}</span>
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WorkRules index="01" />
 
       <CtaBanner
         title="Poznajmy się przy pierwszym zabiegu"

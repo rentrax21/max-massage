@@ -5,3 +5,8 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Oryginały z sesji zdjęciowej (setki MB) — do repo trafiają tylko
+# przetworzone pliki w public/foto/. Zob. scripts/process-photos.js
+wetransfer_*/
+wetransfer_*.zip

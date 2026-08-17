@@ -63,7 +63,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "Max Massage wykonuje profesjonalny masaż w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic — bez konieczności dojazdu, co przy napiętym grafiku pracy zdalnej ma szczególne znaczenie. Umów wizytę, a przekonasz się, jak lekko może czuć się głowa po dobrej pracy na karku.",
+        text: "Jeśli po tygodniu podnoszenia monitora i robienia przerw kark nadal ciągnie, to znak, że napięcie zdążyło się utrwalić i samo już nie odpuści. Wtedy warto je rozpracować z zewnątrz. Przyjeżdżam z pełnym wyposażeniem do Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic — także wieczorem, po Twojej pracy.",
       },
     ],
   },
@@ -109,7 +109,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "Max Massage wykonuje masaż regeneracyjny w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic. Jeśli trenujesz nad Pogorią, w Parku Śląskim albo na katowickich siłowniach — Twoja regeneracja może zaczynać się w momencie, w którym zamykasz za sobą drzwi mieszkania.",
+        text: "Najlepszy moment na masaż regeneracyjny to doba do dwóch dni po najcięższej jednostce tygodnia — wtedy praca na mięśniach realnie skraca powrót do formy. Jeśli trenujesz nad Pogorią, w Parku Śląskim albo na katowickich siłowniach, regeneracja może zaczynać się w chwili, w której zamykasz za sobą drzwi mieszkania.",
       },
     ],
   },
@@ -160,7 +160,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "Max Massage wykonuje profesjonalny masaż w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic. Jeśli masz pytania, których nie znalazłeś tutaj — napisz na WhatsApp, odpowiadam zwykle w ciągu godziny.",
+        text: "To wszystko, o co ludzie pytają najczęściej przed pierwszą wizytą. Jeśli masz pytanie, którego tu nie ma — napisz na WhatsApp, odpowiadam zwykle w ciągu godziny. Nie ma głupich pytań przed masażem; są tylko takie, które niepotrzebnie odkładają decyzję o kilka tygodni.",
       },
     ],
   },

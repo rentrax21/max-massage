@@ -1,6 +1,10 @@
 /**
- * Sygnaturowa grafika hero: mapa obszaru działania z animowaną trasą
- * dojazdu — „masaż przyjeżdża do Ciebie”.
+ * Mapa obszaru działania z animowaną trasą dojazdu — „masaż przyjeżdża
+ * do Ciebie”. Używana na stronie obszaru działania.
+ *
+ * Kolory są tu wpisane wprost, bo SVG nie dziedziczy zmiennych CSS przez
+ * atrybuty `fill`/`stroke`. Przy zmianie palety trzeba je podmienić ręcznie:
+ * ciepły węgiel #2a231d, złoto #C8A96A, jasny tekst #F3EFE9.
  */
 export function JourneyMap() {
   return (
@@ -9,7 +13,7 @@ export function JourneyMap() {
         {/* siatka punktów */}
         <defs>
           <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-            <circle cx="1.2" cy="1.2" r="1.2" fill="rgba(255,255,255,0.07)" />
+            <circle cx="1.2" cy="1.2" r="1.2" fill="rgba(243,239,233,0.08)" />
           </pattern>
           <radialGradient id="glow" cx="0.78" cy="0.78" r="0.6">
             <stop offset="0%" stopColor="rgba(200,169,106,0.22)" />
@@ -20,7 +24,7 @@ export function JourneyMap() {
         <rect width="520" height="400" fill="url(#glow)" />
 
         {/* delikatne linie łączące miasta z bazą */}
-        <g stroke="rgba(255,255,255,0.13)" strokeWidth="1">
+        <g stroke="rgba(243,239,233,0.15)" strokeWidth="1">
           <path d="M250 232 L150 152" />
           <path d="M250 232 L235 104" />
           <path d="M250 232 L392 118" />
@@ -38,27 +42,27 @@ export function JourneyMap() {
 
         {/* węzły miast */}
         <g>
-          <circle cx="150" cy="152" r="5" fill="#2d3c52" stroke="rgba(255,255,255,0.4)" strokeWidth="1.4" />
+          <circle cx="150" cy="152" r="5" fill="#2a231d" stroke="rgba(243,239,233,0.45)" strokeWidth="1.4" />
           <circle className="pulse" cx="150" cy="152" r="9" stroke="rgba(200,169,106,0.5)" strokeWidth="1" />
-          <text x="150" y="132" textAnchor="middle" fill="rgba(255,255,255,0.66)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
+          <text x="150" y="132" textAnchor="middle" fill="rgba(243,239,233,0.86)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
             CZELADŹ
           </text>
 
-          <circle cx="235" cy="104" r="5" fill="#2d3c52" stroke="rgba(255,255,255,0.4)" strokeWidth="1.4" />
+          <circle cx="235" cy="104" r="5" fill="#2a231d" stroke="rgba(243,239,233,0.45)" strokeWidth="1.4" />
           <circle className="pulse" cx="235" cy="104" r="9" stroke="rgba(200,169,106,0.5)" strokeWidth="1" style={{ animationDelay: "0.6s" }} />
-          <text x="235" y="84" textAnchor="middle" fill="rgba(255,255,255,0.66)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
+          <text x="235" y="84" textAnchor="middle" fill="rgba(243,239,233,0.86)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
             BĘDZIN
           </text>
 
-          <circle cx="392" cy="118" r="5" fill="#2d3c52" stroke="rgba(255,255,255,0.4)" strokeWidth="1.4" />
+          <circle cx="392" cy="118" r="5" fill="#2a231d" stroke="rgba(243,239,233,0.45)" strokeWidth="1.4" />
           <circle className="pulse" cx="392" cy="118" r="9" stroke="rgba(200,169,106,0.5)" strokeWidth="1" style={{ animationDelay: "1.2s" }} />
-          <text x="392" y="98" textAnchor="middle" fill="rgba(255,255,255,0.66)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
+          <text x="392" y="98" textAnchor="middle" fill="rgba(243,239,233,0.86)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
             DĄBROWA GÓRNICZA
           </text>
 
-          <circle cx="100" cy="322" r="5" fill="#2d3c52" stroke="rgba(255,255,255,0.4)" strokeWidth="1.4" />
+          <circle cx="100" cy="322" r="5" fill="#2a231d" stroke="rgba(243,239,233,0.45)" strokeWidth="1.4" />
           <circle className="pulse" cx="100" cy="322" r="9" stroke="rgba(200,169,106,0.5)" strokeWidth="1" style={{ animationDelay: "1.8s" }} />
-          <text x="100" y="352" textAnchor="middle" fill="rgba(255,255,255,0.66)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
+          <text x="100" y="352" textAnchor="middle" fill="rgba(243,239,233,0.86)" fontSize="11.5" fontWeight="500" letterSpacing="0.08em">
             KATOWICE
           </text>
         </g>
@@ -70,7 +74,7 @@ export function JourneyMap() {
           <text x="250" y="210" textAnchor="middle" fill="#dcc08a" fontSize="12" fontWeight="600" letterSpacing="0.1em">
             SOSNOWIEC
           </text>
-          <text x="250" y="258" textAnchor="middle" fill="rgba(255,255,255,0.42)" fontSize="10" letterSpacing="0.14em">
+          <text x="250" y="258" textAnchor="middle" fill="rgba(243,239,233,0.62)" fontSize="10" letterSpacing="0.14em">
             BAZA
           </text>
         </g>

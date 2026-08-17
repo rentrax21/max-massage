@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getCity } from "@/lib/cities";
 import { services } from "@/lib/services";
-import { site, bookingHref, whatsappLink } from "@/lib/site";
+import { site, bookingHref, whatsappLink, hasCalendar, guarantee } from "@/lib/site";
 import { AreaStrip } from "@/components/AreaStrip";
 import { FaqList } from "@/components/FaqList";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
+import { Photo } from "@/components/Photo";
 import { ArrowRightIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/Icons";
+import { cityPhoto } from "@/lib/photos";
 
 export function cityMetadata(slug: string): Metadata {
   const city = getCity(slug);
@@ -78,6 +80,17 @@ export function CityPageContent({ slug }: { slug: string }) {
       <section className="section">
         <div className="container split">
           <div style={{ display: "grid", gap: 44 }}>
+            <div data-reveal>
+              <Photo
+                name={cityPhoto[city.slug]}
+                sizes="(max-width: 1023px) 100vw, 62vw"
+                ratio="3 / 2"
+                className="photo--warm"
+                alt={`Masaż z dojazdem — wizyta w mieszkaniu klienta ${city.inCity}`}
+                priority
+              />
+            </div>
+
             <div className="prose" data-reveal>
               {city.paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -127,20 +140,29 @@ export function CityPageContent({ slug }: { slug: string }) {
             <div className="side-card" data-reveal>
               <h3>Rezerwacja {city.inCity}</h3>
               <p>
-                Wybierz usługę i termin — przyjadę z pełnym wyposażeniem pod wskazany adres.
-                Terminy wieczorne i weekendowe w standardzie.
+                Napisz, co dolega i kiedy Ci pasuje — odpowiadam zwykle w ciągu godziny
+                i proponuję dwa lub trzy terminy do wyboru.
               </p>
-              <Link href={bookingHref()} className="btn btn--gold">
-                Umów wizytę
-              </Link>
               <a
                 href={whatsappLink(`Dzień dobry, chcę umówić masaż ${city.inCity}.`)}
                 target="_blank"
                 rel="noopener"
-                className="hero-wa"
+                className="btn btn--gold"
+                data-cta={`whatsapp-${city.slug}`}
               >
-                <WhatsAppIcon size={17} /> Napisz na WhatsApp
+                <WhatsAppIcon size={16} /> Napisz na WhatsApp
               </a>
+              <a href={site.phoneHref} className="btn btn--ghost" data-cta="tel-miasto">
+                <PhoneIcon size={15} /> {site.phoneDisplay}
+              </a>
+              <Link href={bookingHref()} className="link-arrow" data-cta="formularz-miasto">
+                {hasCalendar() ? "Zobacz wolne terminy" : "Wolisz formularz?"}
+              </Link>
+            </div>
+
+            <div className="side-card side-card--plain" data-reveal>
+              <h3>{guarantee.title}</h3>
+              <p>{guarantee.text}</p>
             </div>
             <div className="side-card side-card--plain" data-reveal>
               <h3>Godziny pracy</h3>

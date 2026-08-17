@@ -3,8 +3,9 @@ import Link from "next/link";
 import { AreaStrip } from "@/components/AreaStrip";
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
+import { Photo } from "@/components/Photo";
 import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/Icons";
-import { site, whatsappLink, geoSentence, cityNames } from "@/lib/site";
+import { site, whatsappLink, cityNames, cancellation } from "@/lib/site";
 import { mainFaq } from "@/lib/faq";
 import { FaqList } from "@/components/FaqList";
 
@@ -119,7 +120,24 @@ export default function ContactPage() {
             <div className="side-card side-card--plain" data-reveal>
               <h3>Obszar działania</h3>
               <p style={{ fontWeight: 600, color: "var(--ink)" }}>{cityNames.join(" · ")}</p>
-              <p style={{ fontSize: "0.8rem" }}>{geoSentence}</p>
+              <p style={{ fontSize: "0.8rem" }}>
+                Dojazd w tych pięciu miastach jest wliczony w cenę zabiegu. Mieszkasz tuż za
+                granicą obszaru? Napisz — zwykle da się coś ustalić.
+              </p>
+            </div>
+
+            <div className="side-card side-card--plain" data-reveal>
+              <h3>Odwołanie terminu</h3>
+              <p style={{ fontSize: "0.85rem" }}>{cancellation.text}</p>
+            </div>
+
+            <div data-reveal>
+              <Photo
+                name="przy-stole"
+                sizes="(max-width: 1023px) 100vw, 340px"
+                ratio="3 / 2"
+                alt="Maks przy rozłożonym stole do masażu — sprzęt, który przyjeżdża do klienta"
+              />
             </div>
           </aside>
         </div>

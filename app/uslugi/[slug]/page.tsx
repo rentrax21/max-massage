@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService } from "@/lib/services";
-import { site, bookingHref, whatsappLink } from "@/lib/site";
+import {
+  site,
+  bookingHref,
+  whatsappLink,
+  hasCalendar,
+  guarantee,
+  cancellation,
+} from "@/lib/site";
 import { AreaStrip } from "@/components/AreaStrip";
 import { FaqList } from "@/components/FaqList";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
+import { Photo } from "@/components/Photo";
 import { CheckIcon, PhoneIcon, WhatsAppIcon } from "@/components/Icons";
+import { servicePhoto } from "@/lib/photos";
 
 type Params = { slug: string };
 
@@ -95,6 +104,17 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
       <section className="section">
         <div className="container split">
           <div style={{ display: "grid", gap: 44 }}>
+            <div data-reveal>
+              <Photo
+                name={servicePhoto[service.slug]}
+                sizes="(max-width: 1023px) 100vw, 62vw"
+                ratio="3 / 2"
+                className="photo--warm"
+                alt={`${service.name} wykonywany w domu klienta`}
+                priority
+              />
+            </div>
+
             <div className="prose" data-reveal>
               {service.description.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -153,17 +173,30 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
                 ))}
               </div>
               <p>Cena zawiera dojazd, stół i pełne wyposażenie. Płatność po zabiegu.</p>
-              <Link href={bookingHref()} className="btn btn--gold">
-                Umów wizytę
-              </Link>
+              {/* WhatsApp jako pierwszy przycisk: bez podpiętego kalendarza
+                  „Umów wizytę” to tylko przeładowanie strony, a bezpośrednia
+                  wiadomość realnie zaczyna rezerwację. */}
               <a
                 href={whatsappLink(`Dzień dobry, chcę umówić: ${service.name}.`)}
                 target="_blank"
                 rel="noopener"
-                className="hero-wa"
+                className="btn btn--gold"
+                data-cta={`whatsapp-usluga-${service.slug}`}
               >
-                <WhatsAppIcon size={17} /> Zapytaj na WhatsApp
+                <WhatsAppIcon size={16} /> Napisz na WhatsApp
               </a>
+              <a href={site.phoneHref} className="btn btn--ghost" data-cta="tel-usluga">
+                <PhoneIcon size={15} /> {site.phoneDisplay}
+              </a>
+              <Link href={bookingHref()} className="link-arrow" data-cta="formularz-usluga">
+                {hasCalendar() ? "Zobacz wolne terminy" : "Wolisz formularz?"}
+              </Link>
+            </div>
+
+            <div className="side-card side-card--plain" data-reveal>
+              <h3>{guarantee.title}</h3>
+              <p>{guarantee.text}</p>
+              <p style={{ fontSize: "0.82rem" }}>{cancellation.text}</p>
             </div>
 
             <div className="side-card side-card--plain" data-reveal>

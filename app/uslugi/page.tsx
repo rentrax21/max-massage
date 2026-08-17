@@ -3,8 +3,9 @@ import Link from "next/link";
 import { services } from "@/lib/services";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
+import { Photo } from "@/components/Photo";
 import { ArrowRightIcon } from "@/components/Icons";
-import { geoSentence } from "@/lib/site";
+import { servicePhoto } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Usługi — masaż z dojazdem do domu",
@@ -41,6 +42,15 @@ export default function ServicesPage() {
             {services.map((s, i) => (
               <Link href={`/uslugi/${s.slug}`} className="svc-row" key={s.slug}>
                 <span className="no">/0{i + 1}</span>
+                <span className="svc-thumb" aria-hidden>
+                  <Photo
+                    name={servicePhoto[s.slug]}
+                    sizes="84px"
+                    ratio="1"
+                    alt=""
+                    className="photo--warm"
+                  />
+                </span>
                 <h3>{s.name}</h3>
                 <p className="desc">{s.tile}</p>
                 <span className="price">{s.priceFrom}</span>
@@ -52,7 +62,11 @@ export default function ServicesPage() {
           </div>
 
           <div className="prose" style={{ marginTop: 64, maxWidth: 820 }} data-reveal>
-            <p>{geoSentence}</p>
+            <p>
+              Każdy z tych zabiegów wykonuję na tym samym profesjonalnym stole i z tym samym
+              wyposażeniem, które przywożę ze sobą. Różni je technika i cel: jedne rozpracowują
+              konkretne napięcie, inne wyciszają cały układ nerwowy.
+            </p>
             <p>
               Nie wiesz, który zabieg wybrać? Napisz lub zadzwoń — po krótkiej rozmowie doradzę,
               co najlepiej odpowie na Twoje potrzeby. Możesz też zacząć od{" "}

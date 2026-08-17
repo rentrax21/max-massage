@@ -4,8 +4,8 @@ import { cities } from "@/lib/cities";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JourneyMap } from "@/components/JourneyMap";
+import { Photo } from "@/components/Photo";
 import { ArrowRightIcon } from "@/components/Icons";
-import { geoSentence } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Obszar działania — masaż z dojazdem: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice",
@@ -28,8 +28,9 @@ export default function AreaPage() {
             Pięć miast. <span className="gold">Jeden standard.</span>
           </h1>
           <p className="lead">
-            {geoSentence} Dojazd w każdym z tych miast jest wliczony w cenę — bez ukrytych opłat i
-            widełek „to zależy”.
+            Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź i Katowice. Dojazd w każdym z tych miast
+            jest wliczony w cenę — bez dopłat za kilometry, za piętro bez windy i bez widełek
+            „to zależy”.
           </p>
         </div>
       </section>
@@ -59,13 +60,62 @@ export default function AreaPage() {
             <div data-reveal>
               <JourneyMap />
             </div>
+            <div data-reveal>
+              <Photo
+                name="przy-stole"
+                sizes="(max-width: 1023px) 100vw, 340px"
+                ratio="3 / 2"
+                alt="Przenośny stół do masażu rozłożony przed wizytą"
+              />
+            </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="section section--warm" aria-labelledby="jak-dojezdzam">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <span className="kicker">
+              <span className="idx">01</span> Zasady dojazdu
+            </span>
+            <div className="sh-body">
+              <h2 className="section-title" id="jak-dojezdzam">
+                Dlaczego akurat te pięć miast
+              </h2>
+            </div>
+          </div>
+          <div className="prose" style={{ maxWidth: 760 }} data-reveal>
+            <p>
+              Obszar jest wąski celowo. Masaż z dojazdem ma sens tylko wtedy, gdy przyjeżdżam
+              wypoczęty i punktualnie — a nie po godzinie w korku, z opóźnieniem i pytaniem,
+              gdzie tu zaparkować. Sosnowiec, Czeladź i Będzin leżą obok siebie, Dąbrowa
+              Górnicza i Katowice są w zasięgu kilkunastu, najwyżej dwudziestu paru minut.
+              Dalej byłoby to już obietnicą, której nie umiałbym dotrzymać.
+            </p>
+            <p>
+              Dojazd w każdym z tych miast jest wliczony w cenę zabiegu i nie zależy od dzielnicy.
+              Nie doliczam za kilometry, za wysokie piętro bez windy ani za godziny wieczorne.
+              Kwota z cennika to kwota, którą płacisz po masażu.
+            </p>
+            <p>
+              W praktyce najwięcej czasu oszczędzają dwie grupy: mieszkańcy dalszych dzielnic
+              Dąbrowy Górniczej, gdzie sam przejazd przez miasto potrafi zająć pół godziny,
+              oraz osoby pracujące w katowickich biurowcach, dla których wizyta w gabinecie
+              po pracy oznacza wjazd w szczyt komunikacyjny.
+            </p>
+            <p>
+              Mieszkasz tuż za granicą obszaru — w Siemianowicach, Mysłowicach, Sławkowie,
+              Wojkowicach? Napisz. Przy dogodnej godzinie zwykle da się coś ustalić, choć
+              wtedy potrzebuję trochę więcej wyprzedzenia.
+            </p>
+          </div>
         </div>
       </section>
 
       <CtaBanner
         title="Twoje miasto jest na mapie?"
-        text="Umów wizytę — przyjadę z pełnym wyposażeniem pod wskazany adres. Mieszkasz tuż za granicą obszaru? Napisz, zwykle da się coś ustalić."
+        text="Napisz, kiedy Ci pasuje — przyjadę z pełnym wyposażeniem pod wskazany adres."
+        source="obszar"
       />
     </>
   );

@@ -1,34 +1,48 @@
 /* ═══════════════════════════════════════════════════════════════
-   MAX MASSAGE — design system v2 "editorial precision"
-   Grafit #1E293B · Złoto #C8A96A · Biel — Montserrat
+   MAX MASSAGE — design system v3 "warm editorial"
+   Węgiel #1F1A16 · Złoto #C8A96A · Papier #FAF8F4 — Montserrat
    Zasady: ostra geometria (radius 0), linie włoskowe zamiast
-   kart, zero cieni, typografia robi całą robotę.
+   kart, zero cieni, typografia i fotografia robią całą robotę.
+
+   v3: paleta ocieplona z zimnego grafitu (#1E293B) na ciepły
+   węgiel. Zdjęcia z sesji są w złotym świetle — zimny niebieski
+   neutral gryzł się z odcieniami skóry i drewna.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* — kolory marki — */
-  --graphite: #1e293b;
-  --graphite-deep: #17202e;
-  --graphite-deepest: #121a26;
+  --graphite: #1f1a16;
+  --graphite-deep: #191411;
+  --graphite-deepest: #12100d;
   --gold: #c8a96a;
-  --gold-bright: #d9bd85;
-  --paper: #fafaf8;
-  --paper-warm: #f2f1ed;
+  --gold-bright: #dcc084;
+
+  /* Złoto jako TEKST na jasnym tle. Markowe #c8a96a na papierze daje
+     zaledwie ~2,2:1 — nieczytelne i poniżej WCAG AA. Te dwa warianty
+     są przyciemnione dokładnie tyle, ile trzeba:
+       --gold-ink       ≥ 4,5:1 — tekst drobny (etykiety, numery)
+       --gold-ink-large ≥ 3,0:1 — duże cyfry i nagłówki od 24 px
+     Do tła, ramek i kresek nadal używamy --gold. */
+  --gold-ink: #866728;
+  --gold-ink-large: #a38445;
+
+  --paper: #faf8f4;
+  --paper-warm: #f1ede5;
   --white: #ffffff;
 
   /* — tekst — */
-  --ink: #1e293b;
-  --ink-muted: #5c6a7d;
-  --ink-faint: #93a0b1;
-  --on-dark: #edf1f6;
-  --on-dark-muted: #a3b1c2;
-  --on-dark-faint: #6c7c92;
+  --ink: #1f1a16;
+  --ink-muted: #6b6157;
+  --ink-faint: #756a5f;
+  --on-dark: #f3efe9;
+  --on-dark-muted: #b4a99c;
+  --on-dark-faint: #8c8175;
 
   /* — linie — */
-  --line: #dcdcd6;
-  --line-strong: #b9b9b0;
-  --line-dark: #2c3a4f;
-  --line-dark-strong: #3d4d66;
+  --line: #ddd7cc;
+  --line-strong: #bcb3a4;
+  --line-dark: #352d26;
+  --line-dark-strong: #4b4038;
 
   /* — layout — */
   --container: 1240px;
@@ -120,6 +134,14 @@ ol {
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
+  /* drobny tekst na jasnym tle — wariant przyciemniony */
+  color: var(--gold-ink);
+}
+
+.section--dark .kicker,
+.section--deep .kicker,
+.hero .kicker,
+.cta-band .kicker {
   color: var(--gold);
 }
 
@@ -129,7 +151,10 @@ ol {
   color: var(--ink-faint);
 }
 
-.section--dark .kicker .idx {
+.section--dark .kicker .idx,
+.section--deep .kicker .idx,
+.hero .kicker .idx,
+.cta-band .kicker .idx {
   color: var(--on-dark-faint);
 }
 
@@ -156,7 +181,8 @@ ol {
   max-width: 58ch;
 }
 
-.section--dark .section-lead {
+.section--dark .section-lead,
+.section--deep .section-lead {
   color: var(--on-dark-muted);
 }
 
@@ -302,9 +328,21 @@ ol {
 }
 
 .link-arrow:hover {
-  color: var(--gold);
+  color: var(--gold-ink);
   border-color: var(--gold);
   gap: 15px;
+}
+
+/* .side-card jest ciemna, więc link musi wziąć wariant „na ciemnym”.
+   Wariant --plain ma tło przezroczyste, czyli jasne — jego wykluczamy. */
+.side-card:not(.side-card--plain) .link-arrow {
+  color: var(--on-dark);
+  border-color: var(--line-dark-strong);
+}
+
+.side-card:not(.side-card--plain) .link-arrow:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold);
 }
 
 .section--dark .link-arrow,
@@ -331,7 +369,8 @@ ol {
 }
 
 .header.is-solid {
-  background: rgba(23, 32, 46, 0.94);
+  /* ciepły węgiel z przezroczystością — odpowiednik --graphite-deep */
+  background: rgba(25, 20, 17, 0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom-color: var(--line-dark);
@@ -363,6 +402,9 @@ ol {
   width: 34px;
   height: 34px;
   flex: none;
+  /* sygnet dziedziczy currentColor — w nagłówku ma być złoty, nie biały,
+     żeby znak marki był rozpoznawalny obok białego wordmarku */
+  color: var(--gold);
 }
 
 .logo span em {
@@ -803,6 +845,181 @@ ol {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   ZDJĘCIA
+   Ramka .photo trzyma proporcje i przycina — zdjęcie nigdy nie
+   rozpycha layoutu i nie powoduje CLS.
+   ═══════════════════════════════════════════════════════════════ */
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-warm);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* delikatne ocieplenie + ujednolicenie kadrów z różnych pór dnia */
+.photo--warm img {
+  filter: saturate(1.04) contrast(1.02);
+}
+
+/* scrim pod tekst kładziony na zdjęciu */
+.photo--scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(18, 16, 13, 0.82) 0%,
+    rgba(18, 16, 13, 0.45) 42%,
+    rgba(18, 16, 13, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── hero fotograficzne (split: treść | zdjęcie) ── */
+
+.hero--photo {
+  padding-top: 78px;
+  background: var(--graphite);
+}
+
+.hero-split {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.hero-split-copy {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+  align-content: center;
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 4vw, 72px)
+    clamp(56px, 7vw, 104px) max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+
+.hero-split-photo {
+  position: relative;
+  min-height: clamp(440px, 74vh, 780px);
+}
+
+.hero-split-photo .photo {
+  position: absolute;
+  inset: 0;
+}
+
+/* Kadrowanie hero: zdjęcie źródłowe jest pionowe (2:3), a rama zmienia
+   proporcje z pionu na desktopie w niski pas na telefonie. Bez ręcznego
+   object-position wąski kadr ucina terapeucie głowę. */
+.hero-split-photo .photo img {
+  object-position: 50% 30%;
+}
+
+/* pionowa linia złota na styku kolumn */
+.hero-split-photo::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 1px;
+  background: var(--gold);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* podpis na zdjęciu — dowód, że to realna wizyta, nie stock */
+.hero-photo-note {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px clamp(18px, 2.4vw, 30px);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  background: linear-gradient(to top, rgba(18, 16, 13, 0.72), transparent);
+}
+
+.hero-photo-note em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+@media (max-width: 959px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+
+  /* na mobile zdjęcie idzie na górę — twarz i dotyk sprzedają usługę,
+     ale CTA musi zostać w pierwszym ekranie, więc kadr jest niski */
+  .hero-split-photo {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .hero-split-photo::before {
+    inset: auto 0 0 0;
+    width: auto;
+    height: 1px;
+  }
+
+  /* niski pas pokazuje tylko wycinek pionowego zdjęcia — celujemy
+     w twarz terapeuty i dłonie, nie w środek klatki */
+  .hero-split-photo .photo img {
+    object-position: 50% 15%;
+  }
+
+  .hero-split-copy {
+    padding: clamp(30px, 6vw, 56px) var(--gutter) clamp(40px, 7vw, 64px);
+    gap: 20px;
+  }
+}
+
+/* na telefonie liczy się jedno: „zadzwoń / napisz" ma się zmieścić
+   w pierwszym ekranie razem z nagłówkiem (ok. 812 px wysokości) */
+@media (max-width: 559px) {
+  .hero-split-photo {
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero--photo .display {
+    font-size: 2.45rem;
+    line-height: 1.04;
+  }
+
+  .hero--photo .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .hero--photo .hero-ctas {
+    margin-top: 0;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero--photo .hero-ctas .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
 /* mapa dojazdu — płaska rama */
 .journey {
   border: 1px solid var(--line-dark);
@@ -1004,9 +1221,11 @@ ol {
 
 /* ═══ dla kogo ═══ */
 
+/* cztery persony — na szerokim ekranie 2×2, żeby żadna nie została
+   sama w niepełnym rzędzie */
 .personas {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border-top: 1px solid var(--line-dark);
   border-bottom: 1px solid var(--line-dark);
 }
@@ -1024,9 +1243,15 @@ ol {
   align-content: start;
 }
 
+/* siatka 2×2: pionowa linia tylko między kolumnami, pozioma tylko
+   między rzędami — inaczej kratka rozjeżdża się na krawędziach */
 @media (min-width: 860px) {
-  .persona + .persona {
+  .persona:nth-child(even) {
     border-left: 1px solid var(--line-dark);
+  }
+
+  .persona:nth-child(n + 3) {
+    border-top: 1px solid var(--line-dark);
   }
 }
 
@@ -1042,7 +1267,7 @@ ol {
   line-height: 1;
   letter-spacing: -0.03em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(200, 169, 106, 0.65);
+  -webkit-text-stroke: 1px rgba(200, 169, 106, 0.9);
 }
 
 .persona h3 {
@@ -1090,7 +1315,7 @@ ol {
 
 .svc-row {
   display: grid;
-  grid-template-columns: 64px minmax(0, 5fr) minmax(0, 5fr) 130px 44px;
+  grid-template-columns: 56px 84px minmax(0, 5fr) minmax(0, 5fr) 130px 44px;
   align-items: center;
   gap: clamp(16px, 2.5vw, 40px);
   padding: clamp(22px, 3vw, 34px) 0;
@@ -1176,6 +1401,10 @@ ol {
     row-gap: 6px;
   }
 
+  .svc-row .svc-thumb {
+    display: none;
+  }
+
   .svc-row .no {
     grid-area: no;
   }
@@ -1251,6 +1480,12 @@ ol {
   font-weight: 200;
   line-height: 1;
   letter-spacing: -0.03em;
+  /* duża cyfra na jasnym tle — próg 3:1 */
+  color: var(--gold-ink-large);
+}
+
+.section--dark .step-num,
+.section--deep .step-num {
   color: var(--gold);
 }
 
@@ -1263,6 +1498,11 @@ ol {
 .step p {
   font-size: 0.87rem;
   line-height: 1.75;
+  color: var(--ink-muted);
+}
+
+.section--dark .step p,
+.section--deep .step p {
   color: var(--on-dark-muted);
 }
 
@@ -1576,7 +1816,8 @@ ol {
     z-index: 80;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: rgba(18, 26, 38, 0.96);
+    /* odpowiednik --graphite-deepest, nie zimny granat */
+    background: rgba(18, 16, 13, 0.96);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid var(--line-dark);
@@ -1887,7 +2128,7 @@ ol {
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
   padding: 0 20px 14px 0;
   border-bottom: 1px solid var(--line-strong);
 }
@@ -2009,9 +2250,11 @@ ol {
 
 .extra-card .xp {
   font-size: clamp(1.9rem, 3vw, 2.5rem);
-  font-weight: 200;
+  /* waga 200 przy złocie na jasnym tle była nieczytelna nawet po
+     przyciemnieniu — stąd cięższy krój obok ciemniejszego wariantu */
+  font-weight: 400;
   letter-spacing: -0.02em;
-  color: var(--gold);
+  color: var(--gold-ink-large);
   font-variant-numeric: tabular-nums;
 }
 
@@ -2068,7 +2311,7 @@ ol {
 }
 
 .post-row .meta .cat {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .post-row .meta .date {
@@ -2483,4 +2726,459 @@ ol {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEKCJE FOTOGRAFICZNE (v3)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── para zdjęcie ↔ tekst, naprzemiennie ── */
+
+.duet {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+.duet + .duet {
+  margin-top: clamp(64px, 8vw, 120px);
+}
+
+/* co drugi blok odwrócony — rytm zamiast kolumny kafelków */
+.duet--flip .duet-media {
+  order: 2;
+}
+
+.duet-body {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+}
+
+.duet-body h3 {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+}
+
+.duet-body p {
+  color: var(--ink-muted);
+  max-width: 46ch;
+}
+
+.section--dark .duet-body p,
+.section--deep .duet-body p {
+  color: var(--on-dark-muted);
+}
+
+.duet-media {
+  position: relative;
+}
+
+/* cienka złota krawędź, ta sama logika co linie w reszcie systemu */
+.duet-media::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: clamp(56px, 8vw, 104px);
+  height: 2px;
+  background: var(--gold);
+}
+
+.duet--flip .duet-media::after {
+  left: auto;
+  right: 0;
+}
+
+@media (max-width: 859px) {
+  .duet {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .duet--flip .duet-media {
+    order: 0;
+  }
+}
+
+/* ── pasek galerii (przewijany poziomo) ── */
+
+.gallery-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(210px, 24vw, 320px);
+  gap: 2px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  /* wychodzi poza kontener aż do krawędzi ekranu */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.gallery-strip > * {
+  scroll-snap-align: start;
+}
+
+.gallery-strip::-webkit-scrollbar {
+  height: 3px;
+}
+
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+}
+
+/* ── galeria (podstrona /galeria) ──
+   Kolumny CSS zamiast grid: zdjęcia zachowują własne proporcje
+   (pion i poziom wymieszane), a układ nigdy nie zostawia dziur,
+   które przy grid-auto-placement robi element ze `span 2`. */
+
+.gallery-grid {
+  column-count: 3;
+  column-gap: 2px;
+}
+
+.gallery-grid > * {
+  margin-bottom: 2px;
+  /* nie łam zdjęcia między kolumnami */
+  break-inside: avoid;
+}
+
+@media (max-width: 859px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 479px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+}
+
+/* ── pierwsza wizyta: lista z numeracją na tle zdjęcia ── */
+
+.firstvisit {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+@media (max-width: 959px) {
+  .firstvisit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fv-list {
+  display: grid;
+  gap: 0;
+}
+
+.fv-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 20px;
+  padding-block: 22px;
+  border-top: 1px solid var(--line-dark);
+}
+
+.fv-item:last-child {
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.fv-item dt {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  padding-top: 5px;
+  min-width: 2.5ch;
+}
+
+.fv-item dd h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+  color: var(--on-dark);
+}
+
+.fv-item dd p {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--on-dark-muted);
+  max-width: 52ch;
+}
+
+/* ── indeks usług ze zdjęciem w wierszu ── */
+/* (kolumna 84 px jest zdefiniowana w grid-template-columns .svc-row) */
+
+.svc-row .svc-thumb {
+  display: block;
+  align-self: center;
+}
+
+/* ── opinie: podpis z miastem i oznaczeniem źródła ── */
+
+.reviews-note {
+  margin-top: 28px;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  max-width: 60ch;
+}
+
+/* ── portret w sekcji „o mnie" na stronie głównej ── */
+
+.about-duet {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+
+@media (max-width: 859px) {
+  .about-duet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-sign {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.about-sign::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section--dark .about-sign,
+.section--deep .about-sign {
+  color: var(--on-dark-faint);
+}
+
+/* ── nagłówek podstrony ze zdjęciem tła ── */
+
+.pagehead--photo {
+  position: relative;
+  background: var(--graphite);
+  color: var(--on-dark);
+  isolation: isolate;
+}
+
+.pagehead--photo .photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.pagehead--photo .photo img {
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ZASADY PRACY + ODWRÓCENIE RYZYKA
+   ═══════════════════════════════════════════════════════════════ */
+
+.rules {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: start;
+}
+
+@media (max-width: 959px) {
+  .rules {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rules-list {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.rule {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 22px;
+  padding-block: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rule-num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold-ink);
+  padding-top: 6px;
+  min-width: 2.4ch;
+}
+
+.rule h3 {
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.rule p {
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+
+.rules-side {
+  display: grid;
+  gap: 20px;
+}
+
+/* zobowiązanie — wyróżnione, bo to jedyne miejsce, gdzie strona
+   bierze ryzyko na siebie zamiast zostawiać je klientowi */
+.pledge {
+  border: 1px solid var(--gold);
+  padding: 22px 24px;
+  background: var(--white);
+}
+
+.pledge--plain {
+  border-color: var(--line);
+}
+
+.pledge h3 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-bottom: 10px;
+}
+
+.pledge--plain h3 {
+  color: var(--ink-faint);
+}
+
+.pledge p {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--ink-muted);
+}
+
+/* ── blok kwalifikacji (renderowany tylko po uzupełnieniu danych) ── */
+
+.facts {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: minmax(0, 10ch) minmax(0, 1fr);
+  gap: 20px;
+  padding-block: 13px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.fact dt {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  padding-top: 4px;
+}
+
+.fact dd {
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+@media (max-width: 479px) {
+  .fact {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+/* ── rząd zobowiązań na cenniku ── */
+
+.pledge-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 859px) {
+  .pledge-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.price-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(32px, 4vw, 48px);
+}
+
+@media (max-width: 559px) {
+  .price-cta .btn {
+    /* min-width: 0 jest konieczne — bez niego element flex nie zejdzie
+       poniżej szerokości swojej treści i rozpycha stronę w poziomie */
+    flex: 1 1 100%;
+    min-width: 0;
+    justify-content: center;
+    padding-inline: 18px;
+  }
+}
+
+/* linki tekstowe: 27 px to mało jak na cel dotykowy */
+@media (max-width: 859px) {
+  .link-arrow {
+    padding-block: 8px 10px;
+  }
+}
+
+/* obietnica pod przyciskami w pasie CTA */
+.cta-pledge {
+  margin-top: 22px;
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: var(--on-dark-muted);
+  max-width: 56ch;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-dark);
+}
+
+/* ── pełny lockup logo w stopce ── */
+
+.footer-logo {
+  display: block;
+  width: clamp(230px, 26vw, 300px);
+  margin-bottom: 4px;
+}
+
+.footer-logo img {
+  width: 100%;
+  height: auto;
 }

@@ -5,7 +5,16 @@ import { posts } from "@/lib/blog";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/o-mnie", "/uslugi", "/cennik", "/obszar-dzialania", "/blog", "/kontakt"];
+  const staticPages = [
+    "",
+    "/o-mnie",
+    "/uslugi",
+    "/cennik",
+    "/galeria",
+    "/obszar-dzialania",
+    "/blog",
+    "/kontakt",
+  ];
 
   return [
     ...staticPages.map((p) => ({

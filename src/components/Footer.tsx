@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoMark } from "./Logo";
+import Image from "next/image";
 import { MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, ClockIcon } from "./Icons";
 import { services } from "@/lib/services";
 import { cities } from "@/lib/cities";
@@ -10,11 +10,17 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Link href="/" className="logo" aria-label="Max Massage — strona główna">
-            <LogoMark />
-            <span>
-              Max <em>Massage</em>
-            </span>
+          {/* W stopce jest miejsce na pełny lockup w oryginalnych, metalicznych
+              kolorach — w nagłówku ten sam znak leci jako jednokolorowy sygnet,
+              bo przy 34 px gradienty się zlewają. */}
+          <Link href="/" className="footer-logo" aria-label="Max Massage — strona główna">
+            <Image
+              src="/logo/lockup.png"
+              alt="Max Massage — profesjonalny masaż w Twoim domu"
+              width={760}
+              height={215}
+              sizes="(max-width: 767px) 260px, 300px"
+            />
           </Link>
           <p>
             Profesjonalny mobilny salon masażu. Przyjeżdżam z pełnym wyposażeniem do Twojego domu —
@@ -36,6 +42,9 @@ export function Footer() {
             ))}
             <li>
               <Link href="/cennik">Cennik i pakiety</Link>
+            </li>
+            <li>
+              <Link href="/galeria">Galeria zdjęć</Link>
             </li>
           </ul>
         </div>

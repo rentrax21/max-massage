@@ -11,6 +11,7 @@ import { WhatsAppIcon, MailIcon } from "./Icons";
  */
 export function ContactForm() {
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [city, setCity] = useState<string>(cityNames[0]);
   const [service, setService] = useState(services[0].name);
   const [message, setMessage] = useState("");
@@ -18,6 +19,8 @@ export function ContactForm() {
   const composed = [
     `Dzień dobry, chcę umówić wizytę.`,
     `Imię: ${name || "—"}`,
+    // przy wysyłce e-mailem numer to jedyna droga powrotna do klienta
+    phone ? `Telefon: ${phone}` : null,
     `Miasto: ${city}`,
     `Usługa: ${service}`,
     message ? `Dodatkowe informacje: ${message}` : null,
@@ -50,15 +53,28 @@ export function ContactForm() {
           />
         </div>
         <div className="field">
-          <label htmlFor="f-city">Miasto</label>
-          <select id="f-city" value={city} onChange={(e) => setCity(e.target.value)}>
-            {cityNames.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+          <label htmlFor="f-phone">Telefon</label>
+          <input
+            id="f-phone"
+            type="tel"
+            inputMode="tel"
+            placeholder="np. 512 345 678"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            autoComplete="tel"
+          />
         </div>
+      </div>
+
+      <div className="field">
+        <label htmlFor="f-city">Miasto</label>
+        <select id="f-city" value={city} onChange={(e) => setCity(e.target.value)}>
+          {cityNames.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="field">
