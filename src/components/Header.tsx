@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LogoMark } from "./Logo";
 import { ChevronDownIcon, PhoneIcon, WhatsAppIcon } from "./Icons";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { cities } from "@/lib/cities";
 import { site, whatsappLink, bookingHref } from "@/lib/site";
 
@@ -58,7 +58,7 @@ export function Header() {
                 Usługi <ChevronDownIcon />
               </Link>
               <div className="nav-drop">
-                {services.map((s) => (
+                {activeServices.map((s) => (
                   <Link key={s.slug} href={`/uslugi/${s.slug}`}>
                     {s.name}
                   </Link>
@@ -125,7 +125,7 @@ export function Header() {
             Usługi <ChevronDownIcon size={18} />
           </summary>
           <div className="mm-sub">
-            {services.map((s) => (
+            {activeServices.map((s) => (
               <Link key={s.slug} href={`/uslugi/${s.slug}`}>
                 {s.name}
               </Link>

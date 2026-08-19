@@ -67,8 +67,8 @@ export const site = {
  * ─────────────────────────────────────────────────────────────
  */
 export const credentials = {
-  /** Imię, którym się przedstawiasz na stronie */
-  firstName: "Maks",
+  /** Imię i nazwisko, którym się przedstawiasz na stronie */
+  name: "Max Majka",
 
   /** np. { name: "Technik masażysta", issuer: "Medyczna Szkoła Policealna w Sosnowcu", year: 2019 } */
   diploma: null as { name: string; issuer: string; year: number } | null,
@@ -76,7 +76,7 @@ export const credentials = {
   /** Rok rozpoczęcia praktyki — strona sama policzy staż */
   practiceSince: null as number | null,
 
-  /** Ukończone kursy: podaj nazwę i organizatora, np. ["Kobido — Akademia XYZ, 2023"] */
+  /** Ukończone kursy: podaj nazwę i organizatora, np. ["Masaż sportowy — Akademia XYZ, 2023"] */
   courses: [] as string[],
 
   /** Szacunkowa liczba wizyt w roku — podaj tylko, jeśli to prawda */

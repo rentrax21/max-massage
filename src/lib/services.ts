@@ -7,6 +7,12 @@ export type ServiceFaq = { q: string; a: string };
 
 export type Service = {
   slug: string;
+  /**
+   * Czy usługa jest w ofercie. `false` chowa ją wszędzie — w menu, cenniku,
+   * na liście usług, w danych strukturalnych i w sitemapie — ale zostawia
+   * gotową treść w kodzie. Żeby wrócić do oferty, wystarczy przestawić na `true`.
+   */
+  active: boolean;
   name: string;
   /** krótka nazwa do kafelków / stopki */
   shortName: string;
@@ -28,6 +34,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
+    active: true,
     slug: "masaz-klasyczny",
     name: "Masaż klasyczny",
     shortName: "Masaż klasyczny",
@@ -43,10 +50,10 @@ export const services: Service[] = [
       "Pierwszą wizytę zaczynam od pytania, co dokładnie boli i od jak dawna — bo „bolą mnie plecy” może oznaczać pięć różnych rzeczy i każda wymaga innej pracy. Zwykle okazuje się, że źródłem sztywnego karku są barki podciągnięte przez cały dzień do uszu, a nie sam kark.",
     ],
     variants: [
-      { time: "50 min", price: "180 zł" },
-      { time: "80 min", price: "240 zł" },
+      { time: "50 min", price: "160 zł" },
+      { time: "80 min", price: "220 zł" },
     ],
-    priceFrom: "od 180 zł",
+    priceFrom: "od 160 zł",
     effects: [
       "Rozluźnienie napiętego karku i barków",
       "Zmniejszenie bólu pleców po pracy siedzącej",
@@ -76,6 +83,7 @@ export const services: Service[] = [
     ],
   },
   {
+    active: true,
     slug: "masaz-relaksacyjny",
     name: "Masaż relaksacyjny",
     shortName: "Masaż relaksacyjny",
@@ -91,10 +99,10 @@ export const services: Service[] = [
       "Ten zabieg umawia się najczęściej na wieczór albo na weekend i to ma sens: masaż relaksacyjny w środku dnia pracy działa o połowę słabiej, bo za dwie godziny i tak wracasz do maili. Ostatnie wizyty zaczynam około dziewiętnastej trzydzieści — po nich nie masz już nic w planach poza własnym łóżkiem.",
     ],
     variants: [
-      { time: "50 min", price: "180 zł" },
-      { time: "80 min", price: "240 zł" },
+      { time: "50 min", price: "160 zł" },
+      { time: "80 min", price: "220 zł" },
     ],
-    priceFrom: "od 180 zł",
+    priceFrom: "od 160 zł",
     effects: [
       "Głębokie odprężenie i spokojniejsza głowa",
       "Lepszy, głębszy sen",
@@ -123,6 +131,7 @@ export const services: Service[] = [
     ],
   },
   {
+    active: true,
     slug: "masaz-regeneracyjny",
     name: "Masaż regeneracyjny dla sportowców",
     shortName: "Masaż regeneracyjny",
@@ -138,10 +147,10 @@ export const services: Service[] = [
       "Dojeżdżam z pełnym wyposażeniem do domów klientów w Sosnowcu, Dąbrowie Górniczej, Będzinie, Czeladzi i Katowicach — możesz zaplanować masaż od razu po treningu, bez dodatkowej logistyki.",
     ],
     variants: [
-      { time: "50 min", price: "200 zł" },
-      { time: "80 min", price: "260 zł" },
+      { time: "50 min", price: "180 zł" },
+      { time: "80 min", price: "240 zł" },
     ],
-    priceFrom: "od 200 zł",
+    priceFrom: "od 180 zł",
     effects: [
       "Szybsza regeneracja po ciężkich jednostkach",
       "Mniejsza bolesność mięśni (DOMS)",
@@ -171,6 +180,8 @@ export const services: Service[] = [
     ],
   },
   {
+    // ⚠️ WYŁĄCZONE do czasu ukończenia kursu Kobido — przestaw na true, żeby wróciło
+    active: false,
     slug: "masaz-kobido",
     name: "Masaż Kobido",
     shortName: "Masaż Kobido",
@@ -185,8 +196,8 @@ export const services: Service[] = [
       "Kobido świetnie sprawdza się jako rytuał powtarzany cyklicznie — pierwsze efekty widać po jednym zabiegu, a seria utrwala rezultat. To także wyjątkowy pomysł na prezent.",
       "Masaż Kobido wykonuję w domach klientek i klientów w Sosnowcu, Dąbrowie Górniczej, Będzinie, Czeladzi i Katowicach. Ty przygotowujesz tylko chwilę dla siebie — całe wyposażenie przywożę ze sobą.",
     ],
-    variants: [{ time: "60 min", price: "220 zł" }],
-    priceFrom: "220 zł",
+    variants: [{ time: "60 min", price: "200 zł" }],
+    priceFrom: "200 zł",
     effects: [
       "Naturalny efekt liftingu i wyraźniejszy owal twarzy",
       "Rozluźnienie żuchwy, czoła i mięśni mimicznych",
@@ -218,6 +229,7 @@ export const services: Service[] = [
     ],
   },
   {
+    active: true,
     slug: "masaz-limfatyczny",
     name: "Masaż limfatyczny nóg",
     shortName: "Masaż limfatyczny nóg",
@@ -233,10 +245,10 @@ export const services: Service[] = [
       "Zabieg wykonuję w domu klienta na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic — bez konieczności organizowania dojazdu, co przy zmęczonych nogach ma szczególny sens.",
     ],
     variants: [
-      { time: "40 min", price: "150 zł" },
-      { time: "60 min", price: "190 zł" },
+      { time: "40 min", price: "130 zł" },
+      { time: "60 min", price: "170 zł" },
     ],
-    priceFrom: "od 150 zł",
+    priceFrom: "od 130 zł",
     effects: [
       "Redukcja obrzęków i uczucia ciężkości nóg",
       "Wsparcie krążenia i układu limfatycznego",
@@ -268,6 +280,14 @@ export const services: Service[] = [
   },
 ];
 
+/**
+ * Usługi faktycznie oferowane. Tego używa cała strona — menu, cennik,
+ * lista usług, dane strukturalne, sitemap. Pełna lista `services` trzyma
+ * już tylko gotową treść zabiegów chwilowo wyłączonych.
+ */
+export const activeServices: Service[] = services.filter((s) => s.active);
+
+/** Zwraca wyłącznie aktywną usługę — wyłączone dają 404. */
 export function getService(slug: string): Service | undefined {
-  return services.find((s) => s.slug === slug);
+  return activeServices.find((s) => s.slug === slug);
 }

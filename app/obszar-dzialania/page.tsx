@@ -64,7 +64,6 @@ export default function AreaPage() {
               <Photo
                 name="przy-stole"
                 sizes="(max-width: 1023px) 100vw, 340px"
-                ratio="3 / 2"
                 alt="Przenośny stół do masażu rozłożony przed wizytą"
               />
             </div>

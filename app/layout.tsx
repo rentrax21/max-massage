@@ -8,7 +8,7 @@ import { RevealObserver } from "@/components/Reveal";
 import { CtaTracking } from "@/components/CtaTracking";
 import { JsonLd } from "@/components/JsonLd";
 import { site, cityNames } from "@/lib/site";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Max Massage",
   },
   description:
-    "Mobilny salon masażu z dojazdem do domu klienta: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Masaż klasyczny, relaksacyjny, sportowy, Kobido i limfatyczny — Ty odpoczywasz, ja przyjeżdżam.",
+    "Mobilny salon masażu z dojazdem do domu klienta: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Masaż klasyczny, relaksacyjny, sportowy, limfatyczny — ja przyjeżdżam, Ty odpoczywasz.",
   keywords: [
     "masaż z dojazdem",
     "masaż w domu",
@@ -34,8 +34,6 @@ export const metadata: Metadata = {
     "masaż karku",
     "masaż pleców",
     "masaż sportowy",
-    "Kobido Katowice",
-    "Kobido Sosnowiec",
     "regeneracja po treningu",
   ],
   openGraph: {
@@ -44,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Max Massage",
     title: "Max Massage — profesjonalny masaż w Twoim domu",
     description:
-      "Masaż z dojazdem: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Przyjeżdżam z pełnym wyposażeniem — Ty tylko odpoczywasz.",
+      "Masaż z dojazdem: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Ja przyjeżdżam z pełnym wyposażeniem, Ty tylko odpoczywasz.",
   },
   robots: { index: true, follow: true },
 };
@@ -63,7 +61,7 @@ const localBusinessJsonLd = {
   url: site.url,
   telephone: site.phoneDisplay.replace(/\s/g, ""),
   email: site.email,
-  priceRange: "150–340 zł",
+  priceRange: "130–300 zł",
   areaServed: cityNames.map((c) => ({ "@type": "City", name: c })),
   address: { "@type": "PostalAddress", addressLocality: "Sosnowiec", addressCountry: "PL" },
   openingHoursSpecification: [
@@ -78,7 +76,7 @@ const localBusinessJsonLd = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Usługi masażu z dojazdem",
-    itemListElement: services.map((s) => ({
+    itemListElement: activeServices.map((s) => ({
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",

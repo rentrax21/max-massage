@@ -10,7 +10,7 @@ import { site, whatsappLink, guarantee, cancellation } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Cennik masażu z dojazdem — pakiety, vouchery, oferta dla par",
   description:
-    "Przejrzysty cennik masażu mobilnego: klasyczny, relaksacyjny, sportowy, Kobido, limfatyczny. Pakiety, vouchery podarunkowe i masaż dla par. Dojazd w cenie — Sosnowiec, Katowice i okolice.",
+    "Przejrzysty cennik masażu mobilnego: klasyczny, relaksacyjny, sportowy, limfatyczny. Pakiety, vouchery podarunkowe i masaż dla par. Dojazd w cenie — Sosnowiec, Katowice i okolice.",
   alternates: { canonical: "/cennik" },
 };
 

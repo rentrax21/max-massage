@@ -42,7 +42,7 @@ export const cities: City[] = [
     inCity: "w Sosnowcu",
     metaTitle: "Masaż z dojazdem Sosnowiec — masaż w domu klienta",
     metaDescription:
-      "Masaż z dojazdem do domu w Sosnowcu: klasyczny, relaksacyjny, regeneracyjny, Kobido, limfatyczny. Stół i pełne wyposażenie przywożę ze sobą, dojazd w cenie.",
+      "Masaż z dojazdem do domu w Sosnowcu: klasyczny, relaksacyjny, regeneracyjny, limfatyczny. Stół i pełne wyposażenie przywożę ze sobą, dojazd w cenie.",
     lead:
       "Sosnowiec to moja baza — stąd wyjeżdżam na wszystkie wizyty. Dla Ciebie znaczy to tyle, że tutaj mam najkrótszy dojazd i najwięcej swobody w układaniu terminów.",
     paragraphs: [
@@ -84,7 +84,7 @@ export const cities: City[] = [
     inCity: "w Dąbrowie Górniczej",
     metaTitle: "Masaż z dojazdem Dąbrowa Górnicza — masaż mobilny w domu",
     metaDescription:
-      "Masaż mobilny w Dąbrowie Górniczej z dojazdem do domu: klasyczny, regeneracyjny, relaksacyjny, Kobido, limfatyczny. Pełne wyposażenie, dojazd wliczony w cenę.",
+      "Masaż mobilny w Dąbrowie Górniczej z dojazdem do domu: klasyczny, regeneracyjny, relaksacyjny, limfatyczny. Pełne wyposażenie, dojazd wliczony w cenę.",
     lead:
       "Dąbrowa Górnicza jest jednym z największych powierzchniowo miast w Polsce. To brzmi jak ciekawostka, dopóki nie mieszkasz w Ząbkowicach i nie masz umówionego masażu w centrum.",
     paragraphs: [
@@ -124,7 +124,7 @@ export const cities: City[] = [
     inCity: "w Będzinie",
     metaTitle: "Masaż z dojazdem Będzin — profesjonalny masaż w domu",
     metaDescription:
-      "Masaż z dojazdem do domu w Będzinie: klasyczny, relaksacyjny, regeneracyjny, Kobido, limfatyczny nóg. Dojazd wliczony w cenę, terminy wieczorne i weekendowe.",
+      "Masaż z dojazdem do domu w Będzinie: klasyczny, relaksacyjny, regeneracyjny, limfatyczny nóg. Dojazd wliczony w cenę, terminy wieczorne i weekendowe.",
     lead:
       "Będzin jest wystarczająco mały, żeby po dobry masaż jeździć do Sosnowca albo Katowic, i wystarczająco duży, żeby to była realna strata czasu co tydzień.",
     paragraphs: [
@@ -163,7 +163,7 @@ export const cities: City[] = [
     inCity: "w Czeladzi",
     metaTitle: "Masaż z dojazdem Czeladź — masaż mobilny w domu klienta",
     metaDescription:
-      "Mobilny masaż w Czeladzi z dojazdem do domu: klasyczny, relaksacyjny, regeneracyjny, Kobido, limfatyczny nóg. Krótki dojazd, elastyczne godziny, dojazd w cenie.",
+      "Mobilny masaż w Czeladzi z dojazdem do domu: klasyczny, relaksacyjny, regeneracyjny, limfatyczny nóg. Krótki dojazd, elastyczne godziny, dojazd w cenie.",
     lead:
       "Czeladź to najkrótszy dojazd w całym moim obszarze. Brzmi jak szczegół logistyczny, ale przekłada się na coś konkretnego dla Ciebie: łatwiej tu o nietypową godzinę.",
     paragraphs: [
@@ -194,7 +194,7 @@ export const cities: City[] = [
     inCity: "w Katowicach",
     metaTitle: "Masaż z dojazdem Katowice — masaż w domu po pracy",
     metaDescription:
-      "Masaż mobilny Katowice: dojazd do domu z pełnym wyposażeniem. Klasyczny, relaksacyjny, regeneracyjny, Kobido, limfatyczny. Terminy wieczorne po pracy w biurze.",
+      "Masaż mobilny Katowice: dojazd do domu z pełnym wyposażeniem. Klasyczny, relaksacyjny, regeneracyjny, limfatyczny. Terminy wieczorne po pracy w biurze.",
     lead:
       "W Katowicach masaż z dojazdem oszczędza najwięcej, bo tutaj czas kosztuje najwięcej. Godzina w gabinecie po pracy oznacza w praktyce wyjęcie z wieczoru trzech.",
     paragraphs: [

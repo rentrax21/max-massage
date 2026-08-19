@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { AreaStrip } from "@/components/AreaStrip";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Photo } from "@/components/Photo";
@@ -10,7 +10,7 @@ import { servicePhoto } from "@/lib/photos";
 export const metadata: Metadata = {
   title: "Usługi — masaż z dojazdem do domu",
   description:
-    "Masaż klasyczny, relaksacyjny, regeneracyjny dla sportowców, Kobido i limfatyczny nóg — wszystko z dojazdem do domu na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic.",
+    "Masaż klasyczny, relaksacyjny, regeneracyjny dla sportowców i limfatyczny nóg — wszystko z dojazdem do domu na terenie Sosnowca, Dąbrowy Górniczej, Będzina, Czeladzi i Katowic.",
   alternates: { canonical: "/uslugi" },
 };
 
@@ -28,7 +28,7 @@ export default function ServicesPage() {
             Zabiegi dopasowane do <span className="gold">Twojego zmęczenia</span>
           </h1>
           <p className="lead">
-            Pięć rodzajów masażu — od konkretnej pracy na napiętym karku po głęboki relaks. Każdy w
+            Cztery rodzaje masażu — od konkretnej pracy na napiętym karku po głęboki relaks. Każdy w
             Twoim domu, na profesjonalnym stole, z pełnym wyposażeniem, które przywożę ze sobą.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container">
           <div className="svc-index" data-reveal>
-            {services.map((s, i) => (
+            {activeServices.map((s, i) => (
               <Link href={`/uslugi/${s.slug}`} className="svc-row" key={s.slug}>
                 <span className="no">/0{i + 1}</span>
                 <span className="svc-thumb" aria-hidden>

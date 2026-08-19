@@ -57,8 +57,18 @@ const MAP = [
 
 const MAX = 2000;
 
-/** Zdjęcie na tło obrazka do udostępnień (Open Graph) — kadr poziomy. */
-const OG_SOURCE = "_F0A7053.jpg";
+/** Zdjęcie na tło obrazka do udostępnień (Open Graph) — kadr pionowy. */
+const OG_SOURCE = "_F0A6917.jpg";
+
+/**
+ * Kadrowanie przed skalowaniem, we współrzędnych 0–1 (ułamek szerokości
+ * i wysokości oryginału). Używamy tego tam, gdzie w kadrze widać rzeczy,
+ * których nie powinno być — np. sprzęt studyjny za plecami.
+ */
+const CROP = {
+  // z boków wystawały lampa błyskowa, kable i statyw z modyfikatorem
+  "przy-stole": { left: 0.215, top: 0.023, width: 0.595, height: 0.977 },
+};
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
@@ -71,17 +81,31 @@ const OG_SOURCE = "_F0A7053.jpg";
       continue;
     }
     const dest = path.join(OUT, `${slug}.jpg`);
-    // .rotate() bez argumentu stosuje orientację z EXIF (te pliki mają orientation=8),
-    // więc wymiary wyjściowe czytamy dopiero z gotowego pliku.
-    const { width: w, height: h } = await sharp(src)
-      .rotate()
+
+    // .rotate() bez argumentu stosuje orientację z EXIF (te pliki mają
+    // orientation=8), więc kadr liczymy z wymiarów PO obróceniu.
+    const rotated = await sharp(src).rotate().toBuffer();
+    const rm = await sharp(rotated).metadata();
+    const crop = CROP[slug];
+    const region = crop && {
+      left: Math.round(crop.left * rm.width),
+      top: Math.round(crop.top * rm.height),
+      width: Math.round(crop.width * rm.width),
+      height: Math.round(crop.height * rm.height),
+    };
+
+    const pipeline = () => {
+      const p = sharp(rotated);
+      return region ? p.extract(region) : p;
+    };
+
+    const { width: w, height: h } = await pipeline()
       .resize({ width: MAX, height: MAX, fit: "inside", withoutEnlargement: true })
       .jpeg({ quality: 80, mozjpeg: true })
       .toFile(dest);
 
     // blur placeholder
-    const blurBuf = await sharp(src)
-      .rotate()
+    const blurBuf = await pipeline()
       .resize({ width: 16, height: 16, fit: "inside" })
       .jpeg({ quality: 40 })
       .toBuffer();
@@ -94,7 +118,7 @@ const OG_SOURCE = "_F0A7053.jpg";
     };
 
     const kb = Math.round(fs.statSync(dest).size / 1024);
-    console.log(`${slug.padEnd(20)} ${w}x${h}  ${kb} kB`);
+    console.log(`${slug.padEnd(20)} ${w}x${h}  ${kb} kB${region ? "  (kadrowane)" : ""}`);
   }
 
   fs.writeFileSync(
@@ -106,12 +130,13 @@ const OG_SOURCE = "_F0A7053.jpg";
   // tło obrazka do udostępnień (app/opengraph-image.tsx wczytuje go z dysku)
   const ogSrc = path.join(SRC_TREATMENT, OG_SOURCE);
   if (fs.existsSync(ogSrc)) {
+    // 510×630 — prawa kolumna obrazka do udostępnień (patrz app/opengraph-image.tsx)
     await sharp(ogSrc)
       .rotate()
-      .resize(1200, 630, { fit: "cover", position: "centre" })
+      .resize(510, 630, { fit: "cover", position: "attention" })
       .jpeg({ quality: 78, mozjpeg: true })
       .toFile(path.join(OUT, "og-bg.jpg"));
-    console.log("og-bg.jpg          1200x630");
+    console.log("og-bg.jpg           510x630");
   } else {
     console.error("BRAK źródła og-bg:", ogSrc);
   }

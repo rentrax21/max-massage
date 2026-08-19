@@ -5,7 +5,7 @@ type Props = {
   name: PhotoKey;
   /** `sizes` dla next/image — podaj realną szerokość, jaką zdjęcie zajmuje w layoucie */
   sizes: string;
-  /** proporcje kadru; bez tego zdjęcie zachowuje własne */
+  /** proporcje kadru, np. "3 / 2"; bez tego ramka bierze proporcje zdjęcia */
   ratio?: string;
   priority?: boolean;
   className?: string;
@@ -32,7 +32,9 @@ export function Photo({
   return (
     <div
       className={["photo", className].filter(Boolean).join(" ")}
-      style={ratio ? { aspectRatio: ratio } : undefined}
+      /* zawsze ustawiamy aspectRatio — ramka ma wysokość zanim zdjęcie
+         się wczyta, więc layout nie przeskakuje (CLS) */
+      style={{ aspectRatio: ratio ?? `${p.width} / ${p.height}` }}
     >
       <NextImage
         src={p.src}

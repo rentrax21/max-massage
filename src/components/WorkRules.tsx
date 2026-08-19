@@ -48,7 +48,6 @@ export function WorkRules({ index = "06" }: { index?: string }) {
             <Photo
               name="przy-stole"
               sizes="(max-width: 959px) 100vw, 34vw"
-              ratio="3 / 2"
               alt="Rozłożony stół do masażu ze świeżym pokryciem"
             />
             <div className="pledge">

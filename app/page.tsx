@@ -9,7 +9,7 @@ import { GalleryStrip } from "@/components/GalleryStrip";
 import { FirstVisit } from "@/components/FirstVisit";
 import { WorkRules } from "@/components/WorkRules";
 import { ArrowRightIcon, PhoneIcon, WhatsAppIcon } from "@/components/Icons";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { reviews } from "@/lib/reviews";
 import { mainFaq } from "@/lib/faq";
 import { servicePhoto } from "@/lib/photos";
@@ -18,11 +18,11 @@ import { site, whatsappLink, bookingHref } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Max Massage — profesjonalny masaż w Twoim domu | Sosnowiec, Katowice, Zagłębie",
   description:
-    "Masaż z dojazdem do domu: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Klasyczny, relaksacyjny, regeneracyjny, Kobido, limfatyczny. Własny stół i pełne wyposażenie — Ty odpoczywasz, ja przyjeżdżam.",
+    "Masaż z dojazdem do domu: Sosnowiec, Dąbrowa Górnicza, Będzin, Czeladź, Katowice. Klasyczny, relaksacyjny, regeneracyjny, limfatyczny. Własny stół i pełne wyposażenie — ja przyjeżdżam, Ty odpoczywasz.",
   alternates: { canonical: "/" },
 };
 
-const personas = [
+const allPersonas = [
   {
     num: "01",
     title: "Pracujesz przy komputerze",
@@ -45,9 +45,8 @@ const personas = [
     href: "/uslugi/masaz-relaksacyjny",
   },
   {
-    // Czwarta persona: Kobido to najdroższa usługa w przeliczeniu na godzinę
-    // (220 zł / 60 min), a wcześniej nie miała na stronie głównej żadnego
-    // wejścia — trzy pozostałe persony jej nie obejmowały.
+    // Persona pod Kobido. Znika automatycznie razem z usługą (patrz
+    // `active` w services.ts) i wraca, gdy zabieg wróci do oferty.
     num: "04",
     title: "Zaciskasz zęby i nosisz stres na twarzy",
     desc: "Żuchwa, skronie i czoło trzymają napięcie równie mocno jak kark — tylko trudniej to zauważyć.",
@@ -56,11 +55,18 @@ const personas = [
   },
 ];
 
+/**
+ * Persony pokazujemy tylko te, których zabieg jest w ofercie — inaczej
+ * klient klikałby w usługę, której nie ma.
+ */
+const personas = allPersonas.filter((p) =>
+  activeServices.some((s) => p.href === `/uslugi/${s.slug}`),
+);
+
 /** Trzy powody „dlaczego mobilnie" — każdy dostaje własne zdjęcie zamiast ikonki. */
 const duets = [
   {
     photo: "przy-stole" as const,
-    ratio: "3 / 2",
     title: "Przyjeżdżam z całym gabinetem",
     text: "Profesjonalny stół, świeże pokrycie na każdą wizytę, olejki i muzyka. Rozłożenie stanowiska zajmuje mi dziesięć minut. Ty nie musisz mieć w domu niczego poza kawałkiem wolnej podłogi.",
     cta: { href: "/o-mnie", label: "Poznaj mnie" },
@@ -138,7 +144,7 @@ export default function HomePage() {
               Masaż przyjeżdża <span className="gold">do Ciebie.</span>
             </h1>
             <p className="hero-sub" data-hero-seq="2">
-              <strong>Ty odpoczywasz. Ja przyjeżdżam.</strong> Profesjonalny masaż karku, pleców i
+              <strong>Ja przyjeżdżam, Ty odpoczywasz.</strong> Profesjonalny masaż karku, pleców i
               nóg — na własnym stole, w Twoim mieszkaniu, w Sosnowcu i całym Zagłębiu.
             </p>
             <div className="hero-ctas" data-hero-seq="3">
@@ -199,7 +205,7 @@ export default function HomePage() {
             </span>
             <div className="sh-body">
               <h2 className="section-title" id="dlaczego-mobilnie">
-                Produktem nie jest masaż. Jest nim Twój czas i regeneracja.
+                Moim celem nie jest masaż. Jest nim Twój czas, regeneracja i komfort.
               </h2>
               <p className="section-lead">
                 Wizyta w gabinecie to zabieg plus dojazdy, parking i czekanie. U mnie cały ten koszt
@@ -254,7 +260,7 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <div className="personas">
+          <div className={`personas${personas.length === 4 ? " personas--quad" : ""}`}>
             {personas.map((p, i) => (
               <article
                 className="persona"
@@ -298,7 +304,7 @@ export default function HomePage() {
           </div>
 
           <div className="svc-index" data-reveal>
-            {services.map((s, i) => (
+            {activeServices.map((s, i) => (
               <Link href={`/uslugi/${s.slug}`} className="svc-row" key={s.slug}>
                 <span className="no">/0{i + 1}</span>
                 <span className="svc-thumb" aria-hidden>
@@ -384,7 +390,7 @@ export default function HomePage() {
                 Do drzwi zapuka konkretna osoba, nie „usługa”
               </h2>
               <p>
-                Nazywam się Maks i prowadzę Max Massage sam — to ja odbieram telefon, ja ustalam
+                Nazywam się Max Majka i prowadzę Max Massage sam — to ja odbieram telefon, ja ustalam
                 termin i ja wykonuję zabieg. Nie ma pośredników, recepcji ani zmieniających się
                 masażystów. Wiesz z góry, kto przyjedzie do Twojego domu.
               </p>
@@ -393,7 +399,7 @@ export default function HomePage() {
                 z regeneracją u osób trenujących. Masaż dopasowuję do tego, co mówi ciało — i do
                 tego, co mówisz Ty w trakcie zabiegu.
               </p>
-              <p className="about-sign">Maks — Max Massage</p>
+              <p className="about-sign">Max Majka — Max Massage</p>
               <Link href="/o-mnie" className="link-arrow">
                 Więcej o mnie i o kwalifikacjach <ArrowRightIcon size={13} />
               </Link>

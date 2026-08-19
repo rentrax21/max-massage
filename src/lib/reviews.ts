@@ -24,12 +24,6 @@ export const reviews: Review[] = [
       "Biegam maratony i masaż regeneracyjny co dwa tygodnie to u mnie stały punkt planu. Konkretna, głęboka praca na mięśniach. Stół, olejki, wszystko przywiezione — ja tylko otwieram drzwi.",
   },
   {
-    name: "Agnieszka",
-    place: "Dąbrowa Górnicza",
-    text:
-      "Kobido totalnie mnie kupiło. Twarz wygląda świeżo, a napięcie żuchwy, o którym nawet nie wiedziałam, zniknęło. Bardzo miła, spokojna atmosfera w moim własnym salonie.",
-  },
-  {
     name: "Piotr",
     place: "Będzin",
     text:

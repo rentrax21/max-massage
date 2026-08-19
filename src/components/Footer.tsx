@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, ClockIcon } from "./Icons";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { cities } from "@/lib/cities";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -35,7 +35,7 @@ export function Footer() {
         <div className="footer-col">
           <h4>Usługi</h4>
           <ul>
-            {services.map((s) => (
+            {activeServices.map((s) => (
               <li key={s.slug}>
                 <Link href={`/uslugi/${s.slug}`}>{s.shortName}</Link>
               </li>

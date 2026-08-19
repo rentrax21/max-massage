@@ -29,7 +29,7 @@ export default function AboutPage() {
             Masaż to mój zawód. <span className="gold">Dojazd to mój standard.</span>
           </h1>
           <p className="lead">
-            Nazywam się {credentials.firstName} i prowadzę Max Massage sam — mobilny gabinet masażu,
+            Nazywam się {credentials.name} i prowadzę Max Massage sam — mobilny gabinet masażu,
             który przyjeżdża do domów klientów w Zagłębiu i Katowicach. To ja odbieram telefon
             i to ja wykonuję zabieg.
           </p>
@@ -56,9 +56,9 @@ export default function AboutPage() {
             </p>
             <h2>Kwalifikacje</h2>
             <p>
-              Pracuję z masażem klasycznym, sportowym i limfatycznym oraz z japońskim masażem
-              twarzy Kobido. Poniżej konkrety, które możesz sprawdzić — bo wpuszczasz do domu
-              osobę, której nie znasz, i „profesjonalny masażysta” to za mało.
+              Pracuję z masażem klasycznym, sportowym i limfatycznym. Poniżej konkrety, które
+              możesz sprawdzić — bo wpuszczasz do domu osobę, której nie znasz,
+              a „profesjonalny masażysta” to za mało.
             </p>
 
             <Credentials />
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 sizes="(max-width: 1023px) 100vw, 340px"
                 ratio="4 / 5"
                 position="50% 20%"
-                alt="Maks — masażysta prowadzący Max Massage"
+                alt="Max Majka — masażysta prowadzący Max Massage"
               />
             </div>
             <div className="side-card side-card--plain" data-reveal>

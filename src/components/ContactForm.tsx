@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { cityNames, site, whatsappLink } from "@/lib/site";
 import { WhatsAppIcon, MailIcon } from "./Icons";
 
@@ -13,7 +13,7 @@ export function ContactForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState<string>(cityNames[0]);
-  const [service, setService] = useState(services[0].name);
+  const [service, setService] = useState(activeServices[0].name);
   const [message, setMessage] = useState("");
 
   const composed = [
@@ -80,7 +80,7 @@ export function ContactForm() {
       <div className="field">
         <label htmlFor="f-service">Usługa</label>
         <select id="f-service" value={service} onChange={(e) => setService(e.target.value)}>
-          {services.map((s) => (
+          {activeServices.map((s) => (
             <option key={s.slug} value={s.name}>
               {s.name} — {s.priceFrom}
             </option>

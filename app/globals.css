@@ -1221,11 +1221,12 @@ ol {
 
 /* ═══ dla kogo ═══ */
 
-/* cztery persony — na szerokim ekranie 2×2, żeby żadna nie została
-   sama w niepełnym rzędzie */
+/* Trzy persony stoją w rzędzie; przy czterech (gdy wraca Kobido)
+   przełączamy na 2×2, żeby żadna nie została sama w niepełnym rzędzie.
+   Klasę --quad dokłada strona główna na podstawie liczby person. */
 .personas {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line-dark);
   border-bottom: 1px solid var(--line-dark);
 }
@@ -1243,14 +1244,26 @@ ol {
   align-content: start;
 }
 
-/* siatka 2×2: pionowa linia tylko między kolumnami, pozioma tylko
-   między rzędami — inaczej kratka rozjeżdża się na krawędziach */
 @media (min-width: 860px) {
-  .persona:nth-child(even) {
+  .persona + .persona {
     border-left: 1px solid var(--line-dark);
   }
 
-  .persona:nth-child(n + 3) {
+  /* siatka 2×2: pionowa linia tylko między kolumnami, pozioma tylko
+     między rzędami — inaczej kratka rozjeżdża się na krawędziach */
+  .personas--quad {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .personas--quad .persona {
+    border-left: 0;
+  }
+
+  .personas--quad .persona:nth-child(even) {
+    border-left: 1px solid var(--line-dark);
+  }
+
+  .personas--quad .persona:nth-child(n + 3) {
     border-top: 1px solid var(--line-dark);
   }
 }

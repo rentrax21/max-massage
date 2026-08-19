@@ -135,8 +135,7 @@ export default function ContactPage() {
               <Photo
                 name="przy-stole"
                 sizes="(max-width: 1023px) 100vw, 340px"
-                ratio="3 / 2"
-                alt="Maks przy rozłożonym stole do masażu — sprzęt, który przyjeżdża do klienta"
+                alt="Max Majka przy rozłożonym stole do masażu — sprzęt, który przyjeżdża do klienta"
               />
             </div>
           </aside>

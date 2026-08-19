@@ -48,10 +48,10 @@ const ALT: Record<PhotoKey, string> = {
   "lydka-szeroki": "Obie dłonie masażysty pracujące wzdłuż łydki",
   "lydka-oburacz": "Masaż łydki oburącz w ciepłym świetle",
   oklepywanie: "Oklepywanie — technika kończąca masaż klasyczny",
-  "portret-polo": "Maks — masażysta, portret w studiu",
-  "portret-koszula": "Maks w białej koszuli — portret sylwetkowy",
-  "przy-stole": "Maks przy rozłożonym przenośnym stole do masażu",
-  lotos: "Maks siedzący w pozycji lotosu na stole do masażu",
+  "portret-polo": "Max Majka — masażysta, portret w studiu",
+  "portret-koszula": "Max Majka w białej koszuli — portret sylwetkowy",
+  "przy-stole": "Max Majka przy rozłożonym przenośnym stole do masażu",
+  lotos: "Max Majka siedzący w pozycji lotosu na stole do masażu",
   "portret-usmiech": "Uśmiechnięty portret masażysty przy stole do masażu",
 };
 

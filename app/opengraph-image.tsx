@@ -79,7 +79,7 @@ export default async function OgImage() {
 
           <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid #3a3129", paddingTop: 24 }}>
             <div style={{ display: "flex", fontSize: 23, color: "#c9bdb0", marginBottom: 8 }}>
-              Ty odpoczywasz. Ja przyjeżdżam.
+              Ja przyjeżdżam, Ty odpoczywasz.
             </div>
             <div style={{ display: "flex", fontSize: 18, color: GOLD, fontWeight: 600 }}>
               Sosnowiec · Dąbrowa Górnicza · Będzin · Czeladź · Katowice

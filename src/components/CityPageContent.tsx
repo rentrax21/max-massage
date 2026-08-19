@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getCity } from "@/lib/cities";
-import { services } from "@/lib/services";
+import { activeServices } from "@/lib/services";
 import { site, bookingHref, whatsappLink, hasCalendar, guarantee } from "@/lib/site";
 import { AreaStrip } from "@/components/AreaStrip";
 import { FaqList } from "@/components/FaqList";
@@ -115,7 +115,7 @@ export function CityPageContent({ slug }: { slug: string }) {
                 Zabiegi dostępne {city.inCity}
               </h2>
               <ul className="city-services">
-                {services.map((s) => (
+                {activeServices.map((s) => (
                   <li key={s.slug}>
                     <Link href={`/uslugi/${s.slug}`}>
                       <span>{s.name}</span>

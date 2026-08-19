@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { services, getService } from "@/lib/services";
+import { activeServices, getService } from "@/lib/services";
 import {
   site,
   bookingHref,
@@ -21,7 +21,7 @@ import { servicePhoto } from "@/lib/photos";
 type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
-  return services.map((s) => ({ slug: s.slug }));
+  return activeServices.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
